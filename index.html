@@ -1,0 +1,745 @@
+# ICSSA - Landing Page Demo
+
+Guarda este archivo como:
+
+```txt
+index.html
+```
+
+y súbelo al repositorio `icssa-web`.
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICSSA | Ingeniería Costos y Servicios</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#07111d;
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(4,10,18,.88);
+backdrop-filter:blur(10px);
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.logo img{
+height:54px;
+width:auto;
+}
+
+.logo-text h2{
+font-size:20px;
+font-weight:700;
+}
+
+.logo-text p{
+font-size:11px;
+letter-spacing:2px;
+opacity:.7;
+}
+
+nav ul{
+display:flex;
+gap:28px;
+list-style:none;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-size:14px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#59a7ff;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding:140px 8% 100px;
+background:
+linear-gradient(rgba(5,10,18,.82),rgba(5,10,18,.9)),
+url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+position:relative;
+}
+
+.hero::after{
+content:'';
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center,rgba(67,124,255,.14),transparent 60%);
+}
+
+.hero-content{
+max-width:760px;
+position:relative;
+z-index:2;
+}
+
+.hero-tag{
+display:inline-block;
+padding:10px 18px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:50px;
+margin-bottom:26px;
+font-size:13px;
+letter-spacing:2px;
+background:rgba(255,255,255,.04);
+}
+
+.hero h1{
+font-size:68px;
+line-height:1.05;
+font-weight:800;
+margin-bottom:24px;
+}
+
+.hero h1 span{
+color:#6bb7ff;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.8;
+color:#d2d9e2;
+max-width:650px;
+margin-bottom:35px;
+}
+
+.hero-buttons{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 30px;
+border-radius:14px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.btn-primary{
+background:linear-gradient(135deg,#2d7cff,#4ba8ff);
+color:white;
+}
+
+.btn-primary:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(59,130,246,.35);
+}
+
+.btn-secondary{
+border:1px solid rgba(255,255,255,.18);
+color:white;
+background:rgba(255,255,255,.04);
+}
+
+.btn-secondary:hover{
+background:rgba(255,255,255,.08);
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:70px 8%;
+background:#0b1728;
+}
+
+.stat{
+background:#132238;
+padding:35px 25px;
+border-radius:24px;
+text-align:center;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.stat h2{
+font-size:42px;
+margin-bottom:10px;
+color:#67b2ff;
+}
+
+.stat p{
+opacity:.8;
+line-height:1.6;
+}
+
+/* SECTION */
+
+.section{
+padding:110px 8%;
+}
+
+.section-title{
+margin-bottom:60px;
+max-width:760px;
+}
+
+.section-title span{
+color:#67b2ff;
+font-weight:700;
+letter-spacing:2px;
+font-size:13px;
+}
+
+.section-title h2{
+font-size:48px;
+margin:18px 0;
+line-height:1.2;
+}
+
+.section-title p{
+color:#c7d0dc;
+line-height:1.9;
+}
+
+/* SERVICES */
+
+.services{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:26px;
+}
+
+.service-card{
+background:#132238;
+padding:40px 30px;
+border-radius:28px;
+transition:.3s;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.service-card:hover{
+transform:translateY(-8px);
+box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+.service-icon{
+font-size:42px;
+margin-bottom:24px;
+}
+
+.service-card h3{
+font-size:24px;
+margin-bottom:18px;
+}
+
+.service-card p{
+line-height:1.8;
+color:#c9d1dc;
+}
+
+/* ABOUT */
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:30px;
+box-shadow:0 18px 45px rgba(0,0,0,.45);
+}
+
+.about-text h2{
+font-size:48px;
+margin-bottom:24px;
+}
+
+.about-text p{
+line-height:1.9;
+color:#d2dae4;
+margin-bottom:24px;
+}
+
+.about-list{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+margin-top:30px;
+}
+
+.about-item{
+background:#132238;
+padding:18px;
+border-radius:18px;
+}
+
+/* CTA */
+
+.cta{
+padding:120px 8%;
+text-align:center;
+background:
+linear-gradient(rgba(5,10,18,.88),rgba(5,10,18,.9)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+}
+
+.cta h2{
+font-size:56px;
+max-width:900px;
+margin:auto;
+line-height:1.2;
+margin-bottom:28px;
+}
+
+.cta p{
+max-width:760px;
+margin:auto;
+line-height:1.9;
+color:#d3dbe5;
+margin-bottom:36px;
+}
+
+/* FOOTER */
+
+footer{
+padding:60px 8%;
+background:#050c15;
+border-top:1px solid rgba(255,255,255,.05);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:40px;
+}
+
+.footer-grid h3{
+margin-bottom:20px;
+}
+
+.footer-grid p,
+.footer-grid li{
+line-height:1.9;
+opacity:.8;
+list-style:none;
+}
+
+.footer-bottom{
+margin-top:40px;
+padding-top:30px;
+border-top:1px solid rgba(255,255,255,.06);
+text-align:center;
+opacity:.6;
+font-size:14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+.services,
+.stats,
+.about,
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.hero h1{
+font-size:54px;
+}
+
+}
+
+@media(max-width:768px){
+
+nav{
+padding:16px 5%;
+}
+
+nav ul{
+display:none;
+}
+
+.hero{
+padding:140px 5% 80px;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.section,
+.stats,
+.cta,
+footer{
+padding-left:5%;
+padding-right:5%;
+}
+
+.services,
+.stats,
+.about,
+.footer-grid,
+.about-list{
+grid-template-columns:1fr;
+}
+
+.section-title h2,
+.about-text h2,
+.cta h2{
+font-size:36px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+
+<div class="logo">
+<img src="https://icssacv.com/wp-content/uploads/2020/11/cropped-logoICSSA.jpg" alt="ICSSA">
+
+<div class="logo-text">
+<h2>ICSSA</h2>
+<p>INGENIERÍA COSTOS Y SERVICIOS</p>
+</div>
+</div>
+
+<ul>
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#nosotros">Nosotros</a></li>
+<li><a href="#servicios">Servicios</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+<div class="hero-content">
+
+<div class="hero-tag">
+DESDE 1989 · EXPERIENCIA · PRECISIÓN · CONFIANZA
+</div>
+
+<h1>
+Información que genera <span>certidumbre</span>
+</h1>
+
+<p>
+En ICSSA ayudamos a empresas e instituciones a transformar información estratégica en decisiones confiables mediante valuación, control, ingeniería y análisis especializado.
+</p>
+
+<div class="hero-buttons">
+<a href="#servicios" class="btn btn-primary">
+Nuestros Servicios
+</a>
+
+<a href="#contacto" class="btn btn-secondary">
+Contacto
+</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="stat">
+<h2>35+</h2>
+<p>Años de experiencia profesional y consultoría especializada.</p>
+</div>
+
+<div class="stat">
+<h2>1989</h2>
+<p>Comprometidos con ingeniería, control y valuación empresarial.</p>
+</div>
+
+<div class="stat">
+<h2>100%</h2>
+<p>Enfoque orientado a precisión, análisis y confianza.</p>
+</div>
+
+<div class="stat">
+<h2>ICSSA</h2>
+<p>Ingeniería Costos y Servicios S.A. de C.V.</p>
+</div>
+
+</section>
+
+<!-- NOSOTROS -->
+
+<section class="section" id="nosotros">
+
+<div class="about">
+
+<div>
+<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop" alt="ICSSA">
+</div>
+
+<div class="about-text">
+
+<h2>
+Experiencia respaldada por información estratégica
+</h2>
+
+<p>
+ICSSA integra experiencia técnica, ingeniería, valuación y análisis de información para respaldar decisiones empresariales con precisión y confianza.
+</p>
+
+<p>
+Nuestra visión combina control operativo, análisis financiero, tecnología y conocimiento especializado para ofrecer soluciones confiables en entornos complejos.
+</p>
+
+<div class="about-list">
+
+<div class="about-item">
+📊 Valuación
+</div>
+
+<div class="about-item">
+🧾 Inventarios
+</div>
+
+<div class="about-item">
+🏭 Activos
+</div>
+
+<div class="about-item">
+💻 Tecnología
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICIOS -->
+
+<section class="section" id="servicios">
+
+<div class="section-title">
+<span>SERVICIOS</span>
+<h2>
+Convertimos información en decisiones estratégicas
+</h2>
+
+<p>
+ICSSA ofrece soluciones enfocadas en control, valuación, análisis y optimización de activos para empresas e instituciones.
+</p>
+</div>
+
+<div class="services">
+
+<div class="service-card">
+<div class="service-icon">📈</div>
+<h3>Valuación</h3>
+<p>
+Estimación profesional de activos tangibles e intangibles con enfoque técnico y financiero.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🏢</div>
+<h3>Inventarios</h3>
+<p>
+Control y levantamiento de inventarios con metodologías estructuradas y trazabilidad.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">⚙️</div>
+<h3>Ingeniería</h3>
+<p>
+Soluciones integrales orientadas a control, optimización y análisis especializado.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🛰️</div>
+<h3>Tecnología</h3>
+<p>
+Integración tecnológica y gestión de información para procesos modernos y confiables.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🧠</div>
+<h3>Análisis</h3>
+<p>
+Interpretación estratégica de información para respaldar decisiones empresariales.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🔐</div>
+<h3>Control</h3>
+<p>
+Procesos orientados a precisión, seguridad operativa y mejora continua.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta" id="contacto">
+
+<h2>
+No valuamos activos... respaldamos decisiones.
+</h2>
+
+<p>
+Descubra cómo ICSSA puede ayudarle a transformar información estratégica en certidumbre para su organización.
+</p>
+
+<a href="https://icssacv.com" class="btn btn-primary">
+Visitar sitio actual
+</a>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>ICSSA</h3>
+<p>
+Ingeniería Costos y Servicios S.A. de C.V.
+</p>
+
+<p>
+Experiencia, precisión y confianza desde 1989.
+</p>
+</div>
+
+<div>
+<h3>Servicios</h3>
+<ul>
+<li>Valuación</li>
+<li>Inventarios</li>
+<li>Activos</li>
+<li>Tecnología</li>
+</ul>
+</div>
+
+<div>
+<h3>Contacto</h3>
+<ul>
+<li>www.icssacv.com</li>
+<li>Información corporativa</li>
+<li>Atención especializada</li>
+</ul>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 ICSSA · Ingeniería Costos y Servicios S.A. de C.V.
+</div>
+
+</footer>
+
+</body>
+</html>
+```
+
+---
+
+# Cómo subirlo a GitHub
+
+1. Entra al repo `icssa-web`
+2. Click en `Add file`
+3. `Create new file`
+4. Nombre:
+
+```txt
+index.html
+```
+
+5. Pega TODO el código HTML.
+6. Abajo click en:
+
+```txt
+Commit changes
+```
+
+7. Espera 1 minuto.
+8. Abre:
+
+```txt
+https://alejandrobasurto1.github.io/icssa-web/
+```
