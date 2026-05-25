@@ -5,34 +5,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ICSSA | Ingeniería Costos y Servicios</title>
+<title>ICSSA | Inteligencia Financiera y Control de Activos</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
 
---bg:#07111d;
---card:#102033;
+--bg:#05070b;
+--bg-soft:#0c1118;
+--card:rgba(255,255,255,.03);
 --text:#ffffff;
---text2:#c9d7e5;
+--text-soft:#97a4b5;
+--line:rgba(255,255,255,.08);
 --primary:#4ea3ff;
---border:rgba(255,255,255,.08);
+--glow:rgba(78,163,255,.25);
 
 }
 
 body.light{
 
---bg:#f4f7fb;
---card:#ffffff;
---text:#07111d;
---text2:#4b5b6d;
---primary:#1f6fff;
---border:rgba(0,0,0,.08);
+--bg:#f4f6f9;
+--bg-soft:#ffffff;
+--card:rgba(255,255,255,.75);
+--text:#05070b;
+--text-soft:#5e6b78;
+--line:rgba(0,0,0,.08);
+--primary:#005eff;
+--glow:rgba(0,94,255,.15);
 
 }
 
@@ -42,99 +46,165 @@ padding:0;
 box-sizing:border-box;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
-font-family:'Montserrat',sans-serif;
+
+font-family:'Inter',sans-serif;
 background:var(--bg);
 color:var(--text);
-transition:.4s;
 overflow-x:hidden;
+transition:.35s ease;
+
+}
+
+body::before{
+
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:radial-gradient(circle,var(--glow),transparent 70%);
+top:-250px;
+right:-200px;
+z-index:-1;
+
 }
 
 nav{
+
 position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:18px 6%;
+padding:22px 7%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(6,10,18,.92);
 backdrop-filter:blur(14px);
-border-bottom:1px solid var(--border);
+background:rgba(5,7,11,.72);
+border-bottom:1px solid var(--line);
 z-index:999;
+
 }
 
 body.light nav{
-background:rgba(255,255,255,.92);
+background:rgba(255,255,255,.78);
 }
 
-.logo h1{
-font-size:30px;
+.logo{
+
+display:flex;
+align-items:center;
+gap:18px;
+
+}
+
+.logo img{
+
+width:55px;
+height:55px;
+object-fit:contain;
+
+}
+
+.logo-text h1{
+
+font-size:24px;
 font-weight:800;
+letter-spacing:-1px;
+
 }
 
-.logo p{
+.logo-text p{
+
 font-size:11px;
 letter-spacing:2px;
-opacity:.7;
+color:var(--text-soft);
+
 }
 
 nav ul{
+
 display:flex;
-gap:28px;
+gap:36px;
 list-style:none;
+
 }
 
 nav a{
+
 text-decoration:none;
 color:var(--text);
 font-size:14px;
+font-weight:500;
 transition:.3s;
+
 }
 
 nav a:hover{
 color:var(--primary);
 }
 
+.right-nav{
+
+display:flex;
+align-items:center;
+gap:18px;
+
+}
+
 .toggle{
-padding:10px 14px;
-border:none;
-border-radius:12px;
+
+width:54px;
+height:54px;
+border-radius:50%;
+border:1px solid var(--line);
 background:var(--card);
 color:var(--text);
 cursor:pointer;
-font-weight:700;
-border:1px solid var(--border);
+font-size:18px;
+transition:.3s;
+
 }
 
 .market-bar{
-margin-top:90px;
-padding:14px 6%;
-background:#081421;
-border-bottom:1px solid rgba(255,255,255,.06);
+
+margin-top:98px;
+padding:14px 0;
 overflow:hidden;
-white-space:nowrap;
+border-bottom:1px solid var(--line);
+background:var(--bg-soft);
+
 }
 
 .market-track{
-display:inline-block;
+
+display:flex;
+gap:55px;
+width:max-content;
 animation:scroll 28s linear infinite;
-font-size:14px;
-font-weight:600;
-color:#9ed0ff;
+padding-left:40px;
+
 }
 
-.market-track span{
-margin-right:45px;
+.market-item{
+
+font-size:14px;
+font-weight:600;
+white-space:nowrap;
+color:var(--text-soft);
+
 }
 
 .up{
-color:#51ff8b;
+color:#4dff91;
 }
 
 .down{
-color:#ff7070;
+color:#ff6767;
 }
 
 @keyframes scroll{
@@ -150,40 +220,39 @@ transform:translateX(-50%);
 }
 
 .hero{
-min-height:90vh;
+
+min-height:88vh;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:120px 6%;
+padding:80px 7%;
+gap:80px;
 
-background:
-linear-gradient(rgba(6,10,18,.82),rgba(6,10,18,.90)),
-url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop');
-
-background-size:cover;
-background-position:center;
-gap:60px;
 }
 
-.hero-content{
-max-width:700px;
+.hero-left{
+
+max-width:760px;
+
 }
 
-.hero-tag{
-display:inline-block;
-padding:12px 20px;
-border-radius:40px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.08);
+.mini{
+
 font-size:12px;
-letter-spacing:2px;
-margin-bottom:28px;
+letter-spacing:3px;
+color:var(--primary);
+margin-bottom:24px;
+
 }
 
 .hero h1{
-font-size:66px;
-line-height:1.05;
-margin-bottom:24px;
+
+font-size:92px;
+line-height:.95;
+letter-spacing:-4px;
+margin-bottom:30px;
+font-weight:800;
+
 }
 
 .hero h1 span{
@@ -191,187 +260,282 @@ color:var(--primary);
 }
 
 .hero p{
-font-size:19px;
+
+font-size:20px;
 line-height:1.8;
-color:var(--text2);
-margin-bottom:34px;
+color:var(--text-soft);
+max-width:620px;
+margin-bottom:42px;
+
 }
 
 .buttons{
+
 display:flex;
 gap:18px;
 flex-wrap:wrap;
+
 }
 
 .btn{
-padding:16px 28px;
+
+padding:18px 28px;
 border-radius:14px;
 text-decoration:none;
 font-weight:700;
 transition:.3s;
+
 }
 
 .btn-primary{
-background:linear-gradient(135deg,#2e7fff,#5db8ff);
+
+background:var(--primary);
 color:white;
+box-shadow:0 10px 30px var(--glow);
+
 }
 
 .btn-primary:hover{
+
 transform:translateY(-5px);
+
 }
 
 .btn-secondary{
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.08);
-color:white;
-}
 
-.calculator{
-width:360px;
+border:1px solid var(--line);
 background:var(--card);
-padding:34px;
-border-radius:28px;
-border:1px solid var(--border);
-box-shadow:0 20px 40px rgba(0,0,0,.25);
-}
-
-.calculator h3{
-margin-bottom:24px;
-font-size:24px;
-}
-
-.calculator input{
-width:100%;
-padding:15px;
-margin-bottom:14px;
-border:none;
-border-radius:14px;
-background:rgba(255,255,255,.06);
 color:var(--text);
-font-size:15px;
+
 }
 
-.calculator button{
+.dashboard{
+
+width:380px;
+padding:32px;
+border-radius:28px;
+background:var(--card);
+border:1px solid var(--line);
+backdrop-filter:blur(16px);
+
+}
+
+.dashboard-title{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:26px;
+
+}
+
+.dashboard-title h3{
+
+font-size:22px;
+
+}
+
+.live{
+
+font-size:11px;
+padding:6px 10px;
+border-radius:20px;
+background:rgba(0,255,140,.12);
+color:#4dff91;
+
+}
+
+.calc-box{
+
+margin-bottom:18px;
+
+}
+
+.calc-box label{
+
+display:block;
+margin-bottom:8px;
+font-size:13px;
+color:var(--text-soft);
+
+}
+
+.calc-box input{
+
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid var(--line);
+background:transparent;
+color:var(--text);
+font-size:16px;
+
+}
+
+.dashboard button{
+
 width:100%;
 padding:16px;
 border:none;
 border-radius:14px;
-background:linear-gradient(135deg,#2e7fff,#5db8ff);
+background:var(--primary);
 color:white;
 font-weight:700;
 cursor:pointer;
+margin-top:10px;
+
 }
 
 .result{
-margin-top:22px;
-font-size:20px;
-font-weight:700;
-color:var(--primary);
+
+margin-top:24px;
+padding:18px;
+border-radius:18px;
+background:rgba(255,255,255,.03);
+font-size:18px;
+line-height:1.8;
+
 }
 
 .section{
-padding:100px 6%;
+
+padding:120px 7%;
+
 }
 
-.section-title{
-margin-bottom:50px;
-max-width:760px;
+.section-head{
+
+display:flex;
+justify-content:space-between;
+align-items:end;
+margin-bottom:70px;
+gap:30px;
+
 }
 
-.section-title span{
-color:var(--primary);
-font-size:13px;
-font-weight:700;
-letter-spacing:2px;
+.section-head h2{
+
+font-size:58px;
+letter-spacing:-2px;
+max-width:650px;
+
 }
 
-.section-title h2{
-font-size:48px;
-margin:18px 0;
-}
+.section-head p{
 
-.section-title p{
+max-width:480px;
 line-height:1.8;
-color:var(--text2);
+color:var(--text-soft);
+
 }
 
-.services{
+.capabilities{
+
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:28px;
+gap:26px;
+
 }
 
-.service{
-background:var(--card);
+.capability{
+
 padding:38px;
-border-radius:24px;
-border:1px solid var(--border);
-transition:.3s;
+border-radius:26px;
+background:var(--card);
+border:1px solid var(--line);
+transition:.35s;
+
 }
 
-.service:hover{
-transform:translateY(-8px);
+.capability:hover{
+
+transform:translateY(-10px);
+border-color:var(--primary);
+
 }
 
-.service h3{
-margin:18px 0;
-font-size:24px;
+.capability h3{
+
+font-size:26px;
+margin-bottom:18px;
+
 }
 
-.service p{
-line-height:1.8;
-color:var(--text2);
+.capability p{
+
+line-height:1.9;
+color:var(--text-soft);
+
 }
 
 .contact{
+
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:40px;
+gap:30px;
+
 }
 
-.form,
-.info{
-background:var(--card);
+.contact-box{
+
 padding:40px;
 border-radius:28px;
-border:1px solid var(--border);
+background:var(--card);
+border:1px solid var(--line);
+
 }
 
-.form input,
-.form textarea{
+.contact-box input,
+.contact-box textarea{
+
 width:100%;
-padding:15px;
-margin-bottom:16px;
-border:none;
+padding:16px;
+margin-bottom:18px;
 border-radius:14px;
-background:rgba(255,255,255,.06);
+border:1px solid var(--line);
+background:transparent;
 color:var(--text);
+
 }
 
-.form textarea{
-height:140px;
+.contact-box textarea{
+
+height:160px;
 resize:none;
+
 }
 
-.form button{
+.contact-box button{
+
 padding:16px;
 width:100%;
 border:none;
 border-radius:14px;
-background:linear-gradient(135deg,#2e7fff,#5db8ff);
+background:var(--primary);
 color:white;
 font-weight:700;
 cursor:pointer;
+
+}
+
+footer{
+
+padding:40px 7%;
+border-top:1px solid var(--line);
+color:var(--text-soft);
+font-size:14px;
+
 }
 
 .whatsapp{
+
 position:fixed;
-right:24px;
-bottom:24px;
+right:28px;
+bottom:28px;
 width:72px;
 height:72px;
-background:#25D366;
 border-radius:50%;
+background:#25D366;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -379,29 +543,40 @@ font-size:34px;
 text-decoration:none;
 color:white;
 box-shadow:0 10px 30px rgba(0,0,0,.35);
-z-index:999;
+
 }
 
-footer{
-padding:60px 6%;
-text-align:center;
-background:#050c15;
-border-top:1px solid rgba(255,255,255,.08);
-margin-top:80px;
-}
-
-@media(max-width:1000px){
+@media(max-width:1100px){
 
 .hero{
+
 flex-direction:column;
+align-items:flex-start;
+
 }
 
-.services{
-grid-template-columns:1fr 1fr;
+.dashboard{
+
+width:100%;
+
+}
+
+.capabilities{
+
+grid-template-columns:1fr;
+
 }
 
 .contact{
+
 grid-template-columns:1fr;
+
+}
+
+.hero h1{
+
+font-size:64px;
+
 }
 
 }
@@ -409,35 +584,40 @@ grid-template-columns:1fr;
 @media(max-width:768px){
 
 nav ul{
+
 display:none;
+
 }
 
 .hero{
-padding:120px 5%;
-}
 
-.hero h1{
-font-size:42px;
-}
+padding:60px 5%;
 
-.hero p{
-font-size:16px;
-}
-
-.services{
-grid-template-columns:1fr;
-}
-
-.calculator{
-width:100%;
 }
 
 .section{
-padding:80px 5%;
+
+padding:90px 5%;
+
 }
 
-.section-title h2{
-font-size:36px;
+.hero h1{
+
+font-size:48px;
+
+}
+
+.section-head{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.section-head h2{
+
+font-size:40px;
+
 }
 
 }
@@ -451,19 +631,29 @@ font-size:36px;
 <nav>
 
 <div class="logo">
+
+<img src="logo.png" alt="ICSSA Logo">
+
+<div class="logo-text">
 <h1>ICSSA</h1>
 <p>INGENIERÍA COSTOS Y SERVICIOS</p>
 </div>
 
+</div>
+
 <ul>
 <li><a href="#inicio">Inicio</a></li>
-<li><a href="#servicios">Servicios</a></li>
+<li><a href="#capacidades">Capacidades</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
 
+<div class="right-nav">
+
 <button class="toggle" onclick="toggleMode()">
-🌙 / ☀️
+☀️
 </button>
+
+</div>
 
 </nav>
 
@@ -471,19 +661,25 @@ font-size:36px;
 
 <div class="market-track">
 
-<span>USD/MXN 18.42 <span class="up">▲</span></span>
+<div class="market-item">USD/MXN 18.42 <span class="up">▲ 0.8%</span></div>
 
-<span>EUR/MXN 20.05 <span class="up">▲</span></span>
+<div class="market-item">EUR/MXN 20.05 <span class="up">▲ 0.4%</span></div>
 
-<span>ORO $2,340 <span class="up">▲</span></span>
+<div class="market-item">ORO $2,340 <span class="up">▲ 1.2%</span></div>
 
-<span>PLATA $31.12 <span class="up">▲</span></span>
+<div class="market-item">PLATA $31.12 <span class="up">▲ 0.7%</span></div>
 
-<span>PETRÓLEO $78.20 <span class="down">▼</span></span>
+<div class="market-item">PETRÓLEO $78.20 <span class="down">▼ 0.3%</span></div>
 
-<span>BITCOIN $1,842,000 <span class="up">▲</span></span>
+<div class="market-item">BITCOIN $1,842,000 <span class="up">▲ 2.1%</span></div>
 
-<span>NASDAQ <span class="up">▲</span></span>
+<div class="market-item">NASDAQ <span class="up">▲ 0.9%</span></div>
+
+<div class="market-item">USD/MXN 18.42 <span class="up">▲ 0.8%</span></div>
+
+<div class="market-item">EUR/MXN 20.05 <span class="up">▲ 0.4%</span></div>
+
+<div class="market-item">ORO $2,340 <span class="up">▲ 1.2%</span></div>
 
 </div>
 
@@ -491,24 +687,28 @@ font-size:36px;
 
 <section class="hero" id="inicio">
 
-<div class="hero-content">
+<div class="hero-left">
 
-<div class="hero-tag">
+<div class="mini">
 DESDE 1997 · VALUACIÓN · CONTROL · CONSULTORÍA
 </div>
 
 <h1>
-Precisión financiera e ingeniería que generan <span>confianza</span>
+
+Inteligencia financiera y control estratégico de <span>activos</span>
+
 </h1>
 
 <p>
+
 Más de 28 años ayudando a empresas e instituciones a proteger, analizar y optimizar el valor de sus activos mediante soluciones de valuación, control y análisis financiero.
+
 </p>
 
 <div class="buttons">
 
-<a href="#servicios" class="btn btn-primary">
-Nuestros Servicios
+<a href="#capacidades" class="btn btn-primary">
+Explorar Capacidades
 </a>
 
 <a href="#contacto" class="btn btn-secondary">
@@ -519,61 +719,96 @@ Solicitar Información
 
 </div>
 
-<div class="calculator">
+<div class="dashboard">
+
+<div class="dashboard-title">
 
 <h3>Calculadora Fiscal</h3>
 
-<input type="number" id="subtotal" placeholder="Subtotal">
+<div class="live">
+EN VIVO
+</div>
+
+</div>
+
+<div class="calc-box">
+
+<label>Subtotal</label>
+
+<input type="number" id="subtotal" placeholder="$ 0.00">
+
+</div>
 
 <button onclick="calcularIVA()">
+
 Calcular IVA
+
 </button>
 
 <div class="result" id="resultado">
-Resultado aquí
+
+IVA y total aparecerán aquí.
+
 </div>
 
 </div>
 
 </section>
 
-<section class="section" id="servicios">
+<section class="section" id="capacidades">
 
-<div class="section-title">
-
-<span>SERVICIOS</span>
+<div class="section-head">
 
 <h2>
-Soluciones empresariales y financieras
+
+Capacidades financieras y control patrimonial empresarial
+
 </h2>
 
 <p>
-ICSSA ofrece servicios especializados en valuación, control de activos y consultoría financiera para empresas e instituciones.
+
+ICSSA integra valuación, control de activos y análisis financiero para empresas e instituciones que requieren precisión, trazabilidad y respaldo técnico.
+
 </p>
 
 </div>
 
-<div class="services">
+<div class="capabilities">
 
-<div class="service">
-<h3>📊 Valuación</h3>
+<div class="capability">
+
+<h3>Valuación</h3>
+
 <p>
-Determinación del valor real de activos mediante metodologías objetivas y sustentables.
+
+Determinación del valor real de activos mediante metodologías objetivas, sustentables y alineadas a normativas nacionales e internacionales.
+
 </p>
+
 </div>
 
-<div class="service">
-<h3>🏢 Control de Activos</h3>
+<div class="capability">
+
+<h3>Control de Activos</h3>
+
 <p>
-Inventarios físicos, plaqueo, trazabilidad y control patrimonial empresarial.
+
+Inventarios físicos, plaqueo, trazabilidad y control patrimonial estratégico para empresas e instituciones.
+
 </p>
+
 </div>
 
-<div class="service">
-<h3>📈 Consultoría Financiera</h3>
+<div class="capability">
+
+<h3>Consultoría Financiera</h3>
+
 <p>
-Análisis estratégico, administración de riesgos y soporte financiero especializado.
+
+Análisis financiero, administración de riesgos y soporte técnico para optimizar la toma de decisiones empresariales.
+
 </p>
+
 </div>
 
 </div>
@@ -582,19 +817,25 @@ Análisis estratégico, administración de riesgos y soporte financiero especial
 
 <section class="section" id="contacto">
 
-<div class="section-title">
-
-<span>CONTACTO</span>
+<div class="section-head">
 
 <h2>
-Hablemos sobre su proyecto
+
+Conectemos
+
 </h2>
+
+<p>
+
+Nuestro equipo puede ayudarle con soluciones de valuación, control patrimonial y análisis financiero especializado.
+
+</p>
 
 </div>
 
 <div class="contact">
 
-<div class="form">
+<div class="contact-box">
 
 <input type="text" placeholder="Nombre">
 
@@ -608,21 +849,21 @@ Enviar Información
 
 </div>
 
-<div class="info">
+<div class="contact-box">
 
-<h3 style="margin-bottom:25px;">
-Información Corporativa
+<h3 style="font-size:30px; margin-bottom:25px;">
+ICSSA
 </h3>
 
-<p style="line-height:2; color:var(--text2);">
+<p style="line-height:2; color:var(--text-soft);">
 
-📍 CDMX, México<br><br>
+Ingeniería Costos y Servicios S.A. de C.V.<br><br>
 
-📞 +52 55 0000 0000<br><br>
+CDMX · México<br><br>
 
-✉️ contacto@icssa.com<br><br>
+contacto@icssa.com<br><br>
 
-🕒 Lunes a Viernes · 9:00 AM - 6:00 PM
++52 55 0000 0000
 
 </p>
 
@@ -634,14 +875,14 @@ Información Corporativa
 
 <footer>
 
-<p>
-© 2026 ICSSA · Ingeniería Costos y Servicios S.A. de C.V.
-</p>
+© 2026 ICSSA · Inteligencia Financiera y Control Estratégico de Activos
 
 </footer>
 
 <a class="whatsapp" href="https://wa.me/5215500000000" target="_blank">
+
 💬
+
 </a>
 
 <script>
@@ -659,7 +900,6 @@ let subtotal = parseFloat(document.getElementById('subtotal').value);
 if(isNaN(subtotal)){
 
 document.getElementById('resultado').innerHTML = 'Ingrese un valor válido';
-
 return;
 
 }
@@ -668,8 +908,10 @@ let iva = subtotal * 0.16;
 let total = subtotal + iva;
 
 document.getElementById('resultado').innerHTML = `
-IVA: $${iva.toFixed(2)}<br>
+
+IVA: $${iva.toFixed(2)} <br>
 TOTAL: $${total.toFixed(2)}
+
 `;
 
 }
