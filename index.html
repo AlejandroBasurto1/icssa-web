@@ -17,10 +17,9 @@
 :root{
 
 --bg:#07111d;
---bg2:#0c1728;
---card:#132238;
+--card:#102033;
 --text:#ffffff;
---text2:#d5dde8;
+--text2:#c9d7e5;
 --primary:#4ea3ff;
 --border:rgba(255,255,255,.08);
 
@@ -28,12 +27,11 @@
 
 body.light{
 
---bg:#f5f8fc;
---bg2:#ffffff;
+--bg:#f4f7fb;
 --card:#ffffff;
 --text:#07111d;
---text2:#465468;
---primary:#1b6fff;
+--text2:#4b5b6d;
+--primary:#1f6fff;
 --border:rgba(0,0,0,.08);
 
 }
@@ -44,16 +42,12 @@ padding:0;
 box-sizing:border-box;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 font-family:'Montserrat',sans-serif;
 background:var(--bg);
 color:var(--text);
-overflow-x:hidden;
 transition:.4s;
+overflow-x:hidden;
 }
 
 nav{
@@ -61,28 +55,22 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:18px 8%;
+padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(5,10,18,.90);
+background:rgba(6,10,18,.92);
 backdrop-filter:blur(14px);
-z-index:999;
 border-bottom:1px solid var(--border);
+z-index:999;
 }
 
 body.light nav{
-background:rgba(255,255,255,.88);
+background:rgba(255,255,255,.92);
 }
 
-.logo{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.logo h2{
-font-size:28px;
+.logo h1{
+font-size:30px;
 font-weight:800;
 }
 
@@ -109,8 +97,8 @@ nav a:hover{
 color:var(--primary);
 }
 
-.toggle-mode{
-padding:10px 16px;
+.toggle{
+padding:10px 14px;
 border:none;
 border-radius:12px;
 background:var(--card);
@@ -120,22 +108,65 @@ font-weight:700;
 border:1px solid var(--border);
 }
 
+.market-bar{
+margin-top:90px;
+padding:14px 6%;
+background:#081421;
+border-bottom:1px solid rgba(255,255,255,.06);
+overflow:hidden;
+white-space:nowrap;
+}
+
+.market-track{
+display:inline-block;
+animation:scroll 28s linear infinite;
+font-size:14px;
+font-weight:600;
+color:#9ed0ff;
+}
+
+.market-track span{
+margin-right:45px;
+}
+
+.up{
+color:#51ff8b;
+}
+
+.down{
+color:#ff7070;
+}
+
+@keyframes scroll{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
 .hero{
-min-height:100vh;
+min-height:90vh;
 display:flex;
 align-items:center;
-padding:150px 8% 100px;
+justify-content:space-between;
+padding:120px 6%;
 
 background:
-linear-gradient(rgba(5,10,18,.85),rgba(5,10,18,.92)),
+linear-gradient(rgba(6,10,18,.82),rgba(6,10,18,.90)),
 url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop');
 
 background-size:cover;
 background-position:center;
+gap:60px;
 }
 
 .hero-content{
-max-width:760px;
+max-width:700px;
 }
 
 .hero-tag{
@@ -143,16 +174,16 @@ display:inline-block;
 padding:12px 20px;
 border-radius:40px;
 background:rgba(255,255,255,.06);
-border:1px solid var(--border);
-margin-bottom:28px;
-font-size:13px;
+border:1px solid rgba(255,255,255,.08);
+font-size:12px;
 letter-spacing:2px;
+margin-bottom:28px;
 }
 
 .hero h1{
-font-size:72px;
+font-size:66px;
 line-height:1.05;
-margin-bottom:26px;
+margin-bottom:24px;
 }
 
 .hero h1 span{
@@ -160,11 +191,10 @@ color:var(--primary);
 }
 
 .hero p{
-font-size:20px;
+font-size:19px;
 line-height:1.8;
 color:var(--text2);
-margin-bottom:38px;
-max-width:680px;
+margin-bottom:34px;
 }
 
 .buttons{
@@ -174,7 +204,7 @@ flex-wrap:wrap;
 }
 
 .btn{
-padding:16px 30px;
+padding:16px 28px;
 border-radius:14px;
 text-decoration:none;
 font-weight:700;
@@ -182,7 +212,7 @@ transition:.3s;
 }
 
 .btn-primary{
-background:linear-gradient(135deg,#2f7dff,#57b0ff);
+background:linear-gradient(135deg,#2e7fff,#5db8ff);
 color:white;
 }
 
@@ -192,16 +222,59 @@ transform:translateY(-5px);
 
 .btn-secondary{
 background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.08);
+color:white;
+}
+
+.calculator{
+width:360px;
+background:var(--card);
+padding:34px;
+border-radius:28px;
 border:1px solid var(--border);
+box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+.calculator h3{
+margin-bottom:24px;
+font-size:24px;
+}
+
+.calculator input{
+width:100%;
+padding:15px;
+margin-bottom:14px;
+border:none;
+border-radius:14px;
+background:rgba(255,255,255,.06);
 color:var(--text);
+font-size:15px;
+}
+
+.calculator button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#2e7fff,#5db8ff);
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+.result{
+margin-top:22px;
+font-size:20px;
+font-weight:700;
+color:var(--primary);
 }
 
 .section{
-padding:110px 8%;
+padding:100px 6%;
 }
 
 .section-title{
-margin-bottom:60px;
+margin-bottom:50px;
 max-width:760px;
 }
 
@@ -213,43 +286,13 @@ letter-spacing:2px;
 }
 
 .section-title h2{
-font-size:52px;
+font-size:48px;
 margin:18px 0;
 }
 
 .section-title p{
-line-height:1.9;
+line-height:1.8;
 color:var(--text2);
-}
-
-.dashboard{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:24px;
-}
-
-.card{
-background:var(--card);
-padding:34px;
-border-radius:26px;
-border:1px solid var(--border);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card h3{
-font-size:16px;
-margin-bottom:16px;
-}
-
-.currency{
-font-size:36px;
-font-weight:800;
-color:var(--primary);
-margin-bottom:12px;
 }
 
 .services{
@@ -260,8 +303,8 @@ gap:28px;
 
 .service{
 background:var(--card);
-padding:40px;
-border-radius:28px;
+padding:38px;
+border-radius:24px;
 border:1px solid var(--border);
 transition:.3s;
 }
@@ -280,53 +323,14 @@ line-height:1.8;
 color:var(--text2);
 }
 
-.calculator{
-background:var(--card);
-padding:40px;
-border-radius:28px;
-border:1px solid var(--border);
-max-width:700px;
-margin:auto;
-}
-
-.calculator input{
-width:100%;
-padding:16px;
-margin:12px 0;
-border:none;
-border-radius:14px;
-background:rgba(255,255,255,.06);
-color:var(--text);
-font-size:16px;
-}
-
-.calculator button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:14px;
-background:linear-gradient(135deg,#2f7dff,#57b0ff);
-color:white;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
-margin-top:14px;
-}
-
-.result{
-margin-top:24px;
-font-size:20px;
-font-weight:700;
-color:var(--primary);
-}
-
 .contact{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:40px;
 }
 
-.form{
+.form,
+.info{
 background:var(--card);
 padding:40px;
 border-radius:28px;
@@ -336,17 +340,16 @@ border:1px solid var(--border);
 .form input,
 .form textarea{
 width:100%;
-padding:16px;
-margin-bottom:18px;
+padding:15px;
+margin-bottom:16px;
 border:none;
 border-radius:14px;
 background:rgba(255,255,255,.06);
 color:var(--text);
-font-size:15px;
 }
 
 .form textarea{
-height:150px;
+height:140px;
 resize:none;
 }
 
@@ -355,7 +358,7 @@ padding:16px;
 width:100%;
 border:none;
 border-radius:14px;
-background:linear-gradient(135deg,#2f7dff,#57b0ff);
+background:linear-gradient(135deg,#2e7fff,#5db8ff);
 color:white;
 font-weight:700;
 cursor:pointer;
@@ -363,10 +366,10 @@ cursor:pointer;
 
 .whatsapp{
 position:fixed;
-right:25px;
-bottom:25px;
-width:70px;
-height:70px;
+right:24px;
+bottom:24px;
+width:72px;
+height:72px;
 background:#25D366;
 border-radius:50%;
 display:flex;
@@ -375,49 +378,30 @@ align-items:center;
 font-size:34px;
 text-decoration:none;
 color:white;
-z-index:999;
 box-shadow:0 10px 30px rgba(0,0,0,.35);
-animation:float 2s infinite ease-in-out;
-}
-
-@keyframes float{
-
-0%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-8px);
-}
-
-100%{
-transform:translateY(0);
-}
-
+z-index:999;
 }
 
 footer{
-padding:70px 8%;
+padding:60px 6%;
 text-align:center;
 background:#050c15;
-margin-top:100px;
-border-top:1px solid var(--border);
-}
-
-footer p{
-opacity:.7;
+border-top:1px solid rgba(255,255,255,.08);
+margin-top:80px;
 }
 
 @media(max-width:1000px){
 
-.dashboard,
-.services,
-.contact{
+.hero{
+flex-direction:column;
+}
+
+.services{
 grid-template-columns:1fr 1fr;
 }
 
-.hero h1{
-font-size:54px;
+.contact{
+grid-template-columns:1fr;
 }
 
 }
@@ -429,7 +413,7 @@ display:none;
 }
 
 .hero{
-padding:140px 5% 100px;
+padding:120px 5%;
 }
 
 .hero h1{
@@ -440,18 +424,20 @@ font-size:42px;
 font-size:16px;
 }
 
-.section{
-padding:90px 5%;
-}
-
-.dashboard,
-.services,
-.contact{
+.services{
 grid-template-columns:1fr;
 }
 
+.calculator{
+width:100%;
+}
+
+.section{
+padding:80px 5%;
+}
+
 .section-title h2{
-font-size:38px;
+font-size:36px;
 }
 
 }
@@ -465,40 +451,58 @@ font-size:38px;
 <nav>
 
 <div class="logo">
-<div>
-<h2>ICSSA</h2>
+<h1>ICSSA</h1>
 <p>INGENIERÍA COSTOS Y SERVICIOS</p>
-</div>
 </div>
 
 <ul>
 <li><a href="#inicio">Inicio</a></li>
-<li><a href="#divisas">Divisas</a></li>
 <li><a href="#servicios">Servicios</a></li>
-<li><a href="#calculadora">Calculadora</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
 
-<button class="toggle-mode" onclick="toggleMode()">
+<button class="toggle" onclick="toggleMode()">
 🌙 / ☀️
 </button>
 
 </nav>
+
+<div class="market-bar">
+
+<div class="market-track">
+
+<span>USD/MXN 18.42 <span class="up">▲</span></span>
+
+<span>EUR/MXN 20.05 <span class="up">▲</span></span>
+
+<span>ORO $2,340 <span class="up">▲</span></span>
+
+<span>PLATA $31.12 <span class="up">▲</span></span>
+
+<span>PETRÓLEO $78.20 <span class="down">▼</span></span>
+
+<span>BITCOIN $1,842,000 <span class="up">▲</span></span>
+
+<span>NASDAQ <span class="up">▲</span></span>
+
+</div>
+
+</div>
 
 <section class="hero" id="inicio">
 
 <div class="hero-content">
 
 <div class="hero-tag">
-+35 AÑOS · INGENIERÍA · VALUACIÓN · CONTROL
+DESDE 1997 · VALUACIÓN · CONTROL · CONSULTORÍA
 </div>
 
 <h1>
-Precisión financiera e ingeniería que <span>generan confianza</span>
+Precisión financiera e ingeniería que generan <span>confianza</span>
 </h1>
 
 <p>
-ICSSA integra experiencia técnica, valuación, ingeniería y control estratégico de activos para empresas e instituciones que requieren precisión y análisis especializado.
+Más de 28 años ayudando a empresas e instituciones a proteger, analizar y optimizar el valor de sus activos mediante soluciones de valuación, control y análisis financiero.
 </p>
 
 <div class="buttons">
@@ -515,48 +519,18 @@ Solicitar Información
 
 </div>
 
-</section>
+<div class="calculator">
 
-<section class="section" id="divisas">
+<h3>Calculadora Fiscal</h3>
 
-<div class="section-title">
+<input type="number" id="subtotal" placeholder="Subtotal">
 
-<span>PANEL FINANCIERO</span>
+<button onclick="calcularIVA()">
+Calcular IVA
+</button>
 
-<h2>
-Indicadores y tipo de cambio del día
-</h2>
-
-<p>
-Visualización rápida de indicadores financieros y principales divisas utilizadas en operaciones empresariales.
-</p>
-
-</div>
-
-<div class="dashboard">
-
-<div class="card">
-<h3>USD / MXN</h3>
-<div class="currency">$18.42</div>
-<p>Actualización diaria</p>
-</div>
-
-<div class="card">
-<h3>EUR / MXN</h3>
-<div class="currency">$20.05</div>
-<p>Mercado europeo</p>
-</div>
-
-<div class="card">
-<h3>GBP / MXN</h3>
-<div class="currency">$23.61</div>
-<p>Libra esterlina</p>
-</div>
-
-<div class="card">
-<h3>CAD / MXN</h3>
-<div class="currency">$13.41</div>
-<p>Dólar canadiense</p>
+<div class="result" id="resultado">
+Resultado aquí
 </div>
 
 </div>
@@ -570,11 +544,11 @@ Visualización rápida de indicadores financieros y principales divisas utilizad
 <span>SERVICIOS</span>
 
 <h2>
-Soluciones empresariales y financieras integrales
+Soluciones empresariales y financieras
 </h2>
 
 <p>
-Más de tres décadas respaldando empresas mediante análisis técnico, valuación profesional y control estratégico de activos.
+ICSSA ofrece servicios especializados en valuación, control de activos y consultoría financiera para empresas e instituciones.
 </p>
 
 </div>
@@ -584,50 +558,22 @@ Más de tres décadas respaldando empresas mediante análisis técnico, valuaci�
 <div class="service">
 <h3>📊 Valuación</h3>
 <p>
-Estimación profesional de activos, análisis financiero y respaldo técnico para toma de decisiones empresariales.
+Determinación del valor real de activos mediante metodologías objetivas y sustentables.
 </p>
 </div>
 
 <div class="service">
-<h3>🏢 Inventarios</h3>
+<h3>🏢 Control de Activos</h3>
 <p>
-Control patrimonial, levantamiento físico y administración de activos empresariales.
+Inventarios físicos, plaqueo, trazabilidad y control patrimonial empresarial.
 </p>
 </div>
 
 <div class="service">
-<h3>⚙️ Ingeniería</h3>
+<h3>📈 Consultoría Financiera</h3>
 <p>
-Soluciones integrales de control, optimización y análisis especializado para instituciones y empresas.
+Análisis estratégico, administración de riesgos y soporte financiero especializado.
 </p>
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="calculadora">
-
-<div class="section-title">
-
-<span>CALCULADORA</span>
-
-<h2>
-Calculadora financiera y contable
-</h2>
-
-</div>
-
-<div class="calculator">
-
-<input type="number" id="subtotal" placeholder="Subtotal">
-
-<button onclick="calcularIVA()">
-Calcular IVA
-</button>
-
-<div class="result" id="resultado">
-Resultado aparecerá aquí
 </div>
 
 </div>
@@ -651,7 +597,9 @@ Hablemos sobre su proyecto
 <div class="form">
 
 <input type="text" placeholder="Nombre">
+
 <input type="email" placeholder="Correo">
+
 <textarea placeholder="Escriba su mensaje"></textarea>
 
 <button>
@@ -660,14 +608,22 @@ Enviar Información
 
 </div>
 
-<div class="card">
+<div class="info">
 
-<h3>Información corporativa</h3>
+<h3 style="margin-bottom:25px;">
+Información Corporativa
+</h3>
 
-<p style="line-height:2;">
-📍 Ciudad de México<br><br>
+<p style="line-height:2; color:var(--text2);">
+
+📍 CDMX, México<br><br>
+
 📞 +52 55 0000 0000<br><br>
-✉️ contacto@icssa.com
+
+✉️ contacto@icssa.com<br><br>
+
+🕒 Lunes a Viernes · 9:00 AM - 6:00 PM
+
 </p>
 
 </div>
@@ -677,9 +633,11 @@ Enviar Información
 </section>
 
 <footer>
+
 <p>
 © 2026 ICSSA · Ingeniería Costos y Servicios S.A. de C.V.
 </p>
+
 </footer>
 
 <a class="whatsapp" href="https://wa.me/5215500000000" target="_blank">
@@ -710,7 +668,7 @@ let iva = subtotal * 0.16;
 let total = subtotal + iva;
 
 document.getElementById('resultado').innerHTML = `
-IVA: $${iva.toFixed(2)} <br>
+IVA: $${iva.toFixed(2)}<br>
 TOTAL: $${total.toFixed(2)}
 `;
 
