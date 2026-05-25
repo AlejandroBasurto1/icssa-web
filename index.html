@@ -1,7 +1,7 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,6 +13,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+
+--bg:#07111d;
+--bg2:#0c1728;
+--card:#132238;
+--text:#ffffff;
+--text2:#d5dde8;
+--primary:#4ea3ff;
+--border:rgba(255,255,255,.08);
+
+}
+
+body.light{
+
+--bg:#f5f8fc;
+--bg2:#ffffff;
+--card:#ffffff;
+--text:#07111d;
+--text2:#465468;
+--primary:#1b6fff;
+--border:rgba(0,0,0,.08);
+
+}
 
 *{
 margin:0;
@@ -26,12 +50,11 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Montserrat',sans-serif;
-background:#07111d;
-color:white;
+background:var(--bg);
+color:var(--text);
 overflow-x:hidden;
+transition:.4s;
 }
-
-/* NAV */
 
 nav{
 position:fixed;
@@ -42,10 +65,14 @@ padding:18px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(3,8,15,.92);
-backdrop-filter:blur(12px);
-z-index:1000;
-border-bottom:1px solid rgba(255,255,255,.08);
+background:rgba(5,10,18,.90);
+backdrop-filter:blur(14px);
+z-index:999;
+border-bottom:1px solid var(--border);
+}
+
+body.light nav{
+background:rgba(255,255,255,.88);
 }
 
 .logo{
@@ -54,20 +81,12 @@ align-items:center;
 gap:14px;
 }
 
-.logo img{
-height:62px;
-width:auto;
-border-radius:6px;
-background:white;
-padding:4px;
-}
-
-.logo-text h2{
-font-size:24px;
+.logo h2{
+font-size:28px;
 font-weight:800;
 }
 
-.logo-text p{
+.logo p{
 font-size:11px;
 letter-spacing:2px;
 opacity:.7;
@@ -75,22 +94,31 @@ opacity:.7;
 
 nav ul{
 display:flex;
-gap:30px;
+gap:28px;
 list-style:none;
 }
 
 nav a{
 text-decoration:none;
-color:white;
+color:var(--text);
 font-size:14px;
 transition:.3s;
 }
 
 nav a:hover{
-color:#62b4ff;
+color:var(--primary);
 }
 
-/* HERO */
+.toggle-mode{
+padding:10px 16px;
+border:none;
+border-radius:12px;
+background:var(--card);
+color:var(--text);
+cursor:pointer;
+font-weight:700;
+border:1px solid var(--border);
+}
 
 .hero{
 min-height:100vh;
@@ -99,62 +127,49 @@ align-items:center;
 padding:150px 8% 100px;
 
 background:
-linear-gradient(rgba(4,10,18,.80),rgba(4,10,18,.88)),
-url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop');
+linear-gradient(rgba(5,10,18,.85),rgba(5,10,18,.92)),
+url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop');
 
 background-size:cover;
 background-position:center;
-position:relative;
-}
-
-.hero::after{
-content:'';
-position:absolute;
-inset:0;
-
-background:
-radial-gradient(circle at center,rgba(70,120,255,.15),transparent 60%);
 }
 
 .hero-content{
 max-width:760px;
-position:relative;
-z-index:2;
 }
 
 .hero-tag{
 display:inline-block;
 padding:12px 20px;
-border-radius:50px;
+border-radius:40px;
 background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.10);
+border:1px solid var(--border);
+margin-bottom:28px;
 font-size:13px;
 letter-spacing:2px;
-margin-bottom:28px;
 }
 
 .hero h1{
 font-size:72px;
 line-height:1.05;
-font-weight:800;
 margin-bottom:26px;
 }
 
 .hero h1 span{
-color:#66b6ff;
+color:var(--primary);
 }
 
 .hero p{
 font-size:20px;
 line-height:1.8;
-color:#d4dde7;
-max-width:680px;
+color:var(--text2);
 margin-bottom:38px;
+max-width:680px;
 }
 
-.hero-buttons{
+.buttons{
 display:flex;
-gap:20px;
+gap:18px;
 flex-wrap:wrap;
 }
 
@@ -167,84 +182,75 @@ transition:.3s;
 }
 
 .btn-primary{
-background:linear-gradient(135deg,#2d7cff,#58b4ff);
+background:linear-gradient(135deg,#2f7dff,#57b0ff);
 color:white;
 }
 
 .btn-primary:hover{
-transform:translateY(-4px);
-box-shadow:0 12px 30px rgba(58,130,246,.35);
+transform:translateY(-5px);
 }
 
 .btn-secondary{
-border:1px solid rgba(255,255,255,.15);
-color:white;
-background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.06);
+border:1px solid var(--border);
+color:var(--text);
 }
-
-.btn-secondary:hover{
-background:rgba(255,255,255,.08);
-}
-
-/* STATS */
-
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:24px;
-padding:80px 8%;
-background:#0c1728;
-}
-
-.stat{
-background:#122136;
-padding:36px 26px;
-border-radius:26px;
-text-align:center;
-border:1px solid rgba(255,255,255,.05);
-}
-
-.stat h2{
-font-size:44px;
-margin-bottom:12px;
-color:#66b6ff;
-}
-
-.stat p{
-opacity:.85;
-line-height:1.7;
-}
-
-/* SECTION */
 
 .section{
 padding:110px 8%;
 }
 
 .section-title{
-max-width:760px;
 margin-bottom:60px;
+max-width:760px;
 }
 
 .section-title span{
-color:#69b8ff;
+color:var(--primary);
 font-size:13px;
 font-weight:700;
 letter-spacing:2px;
 }
 
 .section-title h2{
-font-size:50px;
+font-size:52px;
 margin:18px 0;
-line-height:1.2;
 }
 
 .section-title p{
 line-height:1.9;
-color:#d2dae5;
+color:var(--text2);
 }
 
-/* SERVICES */
+.dashboard{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:24px;
+}
+
+.card{
+background:var(--card);
+padding:34px;
+border-radius:26px;
+border:1px solid var(--border);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+font-size:16px;
+margin-bottom:16px;
+}
+
+.currency{
+font-size:36px;
+font-weight:800;
+color:var(--primary);
+margin-bottom:12px;
+}
 
 .services{
 display:grid;
@@ -252,166 +258,178 @@ grid-template-columns:repeat(3,1fr);
 gap:28px;
 }
 
-.service-card{
-background:#132238;
-padding:42px 32px;
+.service{
+background:var(--card);
+padding:40px;
 border-radius:28px;
+border:1px solid var(--border);
 transition:.3s;
-border:1px solid rgba(255,255,255,.05);
 }
 
-.service-card:hover{
+.service:hover{
 transform:translateY(-8px);
-box-shadow:0 18px 40px rgba(0,0,0,.35);
 }
 
-.service-icon{
-font-size:44px;
-margin-bottom:24px;
-}
-
-.service-card h3{
+.service h3{
+margin:18px 0;
 font-size:24px;
-margin-bottom:18px;
 }
 
-.service-card p{
+.service p{
 line-height:1.8;
-color:#d0d8e2;
+color:var(--text2);
 }
 
-/* ABOUT */
-
-.about{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:70px;
-align-items:center;
+.calculator{
+background:var(--card);
+padding:40px;
+border-radius:28px;
+border:1px solid var(--border);
+max-width:700px;
+margin:auto;
 }
 
-.about img{
+.calculator input{
 width:100%;
-border-radius:30px;
-box-shadow:0 18px 45px rgba(0,0,0,.45);
+padding:16px;
+margin:12px 0;
+border:none;
+border-radius:14px;
+background:rgba(255,255,255,.06);
+color:var(--text);
+font-size:16px;
 }
 
-.about-text h2{
-font-size:48px;
-margin-bottom:24px;
+.calculator button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#2f7dff,#57b0ff);
+color:white;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+margin-top:14px;
 }
 
-.about-text p{
-line-height:1.9;
-color:#d4dde6;
-margin-bottom:24px;
+.result{
+margin-top:24px;
+font-size:20px;
+font-weight:700;
+color:var(--primary);
 }
 
-.about-list{
+.contact{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:16px;
-margin-top:34px;
+gap:40px;
 }
 
-.about-item{
-background:#132238;
-padding:18px;
-border-radius:18px;
+.form{
+background:var(--card);
+padding:40px;
+border-radius:28px;
+border:1px solid var(--border);
 }
 
-/* CTA */
-
-.cta{
-padding:130px 8%;
-text-align:center;
-
-background:
-linear-gradient(rgba(5,10,18,.86),rgba(5,10,18,.92)),
-url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
-
-background-size:cover;
-background-position:center;
+.form input,
+.form textarea{
+width:100%;
+padding:16px;
+margin-bottom:18px;
+border:none;
+border-radius:14px;
+background:rgba(255,255,255,.06);
+color:var(--text);
+font-size:15px;
 }
 
-.cta h2{
-font-size:58px;
-line-height:1.2;
-max-width:900px;
-margin:auto;
-margin-bottom:28px;
+.form textarea{
+height:150px;
+resize:none;
 }
 
-.cta p{
-max-width:760px;
-margin:auto;
-line-height:1.9;
-color:#d5dce6;
-margin-bottom:38px;
+.form button{
+padding:16px;
+width:100%;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#2f7dff,#57b0ff);
+color:white;
+font-weight:700;
+cursor:pointer;
 }
 
-/* FOOTER */
+.whatsapp{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+text-decoration:none;
+color:white;
+z-index:999;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
 
 footer{
 padding:70px 8%;
-background:#050c15;
-border-top:1px solid rgba(255,255,255,.06);
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:2fr 1fr 1fr;
-gap:50px;
-}
-
-.footer-grid h3{
-margin-bottom:20px;
-}
-
-.footer-grid p,
-.footer-grid li{
-line-height:1.9;
-opacity:.8;
-list-style:none;
-}
-
-.footer-bottom{
-margin-top:40px;
-padding-top:30px;
-border-top:1px solid rgba(255,255,255,.06);
 text-align:center;
-opacity:.6;
-font-size:14px;
+background:#050c15;
+margin-top:100px;
+border-top:1px solid var(--border);
 }
 
-/* MOBILE */
+footer p{
+opacity:.7;
+}
 
-@media(max-width:1100px){
+@media(max-width:1000px){
 
+.dashboard,
 .services,
-.stats,
-.about,
-.footer-grid{
+.contact{
 grid-template-columns:1fr 1fr;
 }
 
 .hero h1{
-font-size:56px;
+font-size:54px;
 }
 
 }
 
 @media(max-width:768px){
 
-nav{
-padding:16px 5%;
-}
-
 nav ul{
 display:none;
 }
 
 .hero{
-padding:140px 5% 90px;
+padding:140px 5% 100px;
 }
 
 .hero h1{
@@ -422,31 +440,24 @@ font-size:42px;
 font-size:16px;
 }
 
-.section,
-.stats,
-.cta,
-footer{
-padding-left:5%;
-padding-right:5%;
+.section{
+padding:90px 5%;
 }
 
+.dashboard,
 .services,
-.stats,
-.about,
-.footer-grid,
-.about-list{
+.contact{
 grid-template-columns:1fr;
 }
 
-.section-title h2,
-.about-text h2,
-.cta h2{
-font-size:36px;
+.section-title h2{
+font-size:38px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -454,25 +465,23 @@ font-size:36px;
 <nav>
 
 <div class="logo">
-
-```html
-https://www.icssacv.com/wp-content/uploads/2020/11/cropped-logoICSSA.jpg
-```
-
-
-<div class="logo-text">
+<div>
 <h2>ICSSA</h2>
 <p>INGENIERÍA COSTOS Y SERVICIOS</p>
 </div>
-
 </div>
 
 <ul>
 <li><a href="#inicio">Inicio</a></li>
-<li><a href="#nosotros">Nosotros</a></li>
+<li><a href="#divisas">Divisas</a></li>
 <li><a href="#servicios">Servicios</a></li>
+<li><a href="#calculadora">Calculadora</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
+
+<button class="toggle-mode" onclick="toggleMode()">
+🌙 / ☀️
+</button>
 
 </nav>
 
@@ -481,25 +490,25 @@ https://www.icssacv.com/wp-content/uploads/2020/11/cropped-logoICSSA.jpg
 <div class="hero-content">
 
 <div class="hero-tag">
-DESDE 1989 · EXPERIENCIA · PRECISIÓN · CONFIANZA
++35 AÑOS · INGENIERÍA · VALUACIÓN · CONTROL
 </div>
 
 <h1>
-Experiencia, precisión y confianza que <span>construyen valor</span>
+Precisión financiera e ingeniería que <span>generan confianza</span>
 </h1>
 
 <p>
-Soluciones integrales en valuación, administración financiera, control de activos, ingeniería, inventarios y bases de datos para empresas e instituciones.
+ICSSA integra experiencia técnica, valuación, ingeniería y control estratégico de activos para empresas e instituciones que requieren precisión y análisis especializado.
 </p>
 
-<div class="hero-buttons">
+<div class="buttons">
 
 <a href="#servicios" class="btn btn-primary">
 Nuestros Servicios
 </a>
 
-<a href="https://icssacv.com" class="btn btn-secondary">
-Sitio Actual
+<a href="#contacto" class="btn btn-secondary">
+Solicitar Información
 </a>
 
 </div>
@@ -508,77 +517,46 @@ Sitio Actual
 
 </section>
 
-<section class="stats">
+<section class="section" id="divisas">
 
-<div class="stat">
-<h2>35+</h2>
-<p>Años de experiencia profesional y consultoría especializada.</p>
-</div>
+<div class="section-title">
 
-<div class="stat">
-<h2>1989</h2>
-<p>Comprometidos con ingeniería, control y valuación empresarial.</p>
-</div>
-
-<div class="stat">
-<h2>100%</h2>
-<p>Enfoque orientado a precisión, análisis y confianza.</p>
-</div>
-
-<div class="stat">
-<h2>ICSSA</h2>
-<p>Ingeniería Costos y Servicios S.A. de C.V.</p>
-</div>
-
-</section>
-
-<section class="section" id="nosotros">
-
-<div class="about">
-
-<div>
-
-```html id="qz8k4o"
-<img src="logo.png">
-```
-
-
-</div>
-
-<div class="about-text">
+<span>PANEL FINANCIERO</span>
 
 <h2>
-Lo que no se mide... se pierde.
+Indicadores y tipo de cambio del día
 </h2>
 
 <p>
-ICSSA integra experiencia técnica, ingeniería, valuación y análisis de información para respaldar decisiones empresariales con precisión y confianza.
+Visualización rápida de indicadores financieros y principales divisas utilizadas en operaciones empresariales.
 </p>
 
-<p>
-Nuestra visión combina control operativo, análisis financiero, tecnología y conocimiento especializado para ofrecer soluciones confiables en entornos complejos.
-</p>
-
-<div class="about-list">
-
-<div class="about-item">
-📊 Valuación
 </div>
 
-<div class="about-item">
-🧾 Inventarios
+<div class="dashboard">
+
+<div class="card">
+<h3>USD / MXN</h3>
+<div class="currency">$18.42</div>
+<p>Actualización diaria</p>
 </div>
 
-<div class="about-item">
-🏭 Activos
+<div class="card">
+<h3>EUR / MXN</h3>
+<div class="currency">$20.05</div>
+<p>Mercado europeo</p>
 </div>
 
-<div class="about-item">
-💻 Tecnología
+<div class="card">
+<h3>GBP / MXN</h3>
+<div class="currency">$23.61</div>
+<p>Libra esterlina</p>
 </div>
 
-</div>
-
+<div class="card">
+<h3>CAD / MXN</h3>
+<div class="currency">$13.41</div>
+<p>Dólar canadiense</p>
 </div>
 
 </div>
@@ -592,62 +570,35 @@ Nuestra visión combina control operativo, análisis financiero, tecnología y c
 <span>SERVICIOS</span>
 
 <h2>
-Convertimos activos en decisiones estratégicas
+Soluciones empresariales y financieras integrales
 </h2>
 
 <p>
-ICSSA ofrece soluciones enfocadas en control, valuación, análisis y optimización de activos para empresas e instituciones.
+Más de tres décadas respaldando empresas mediante análisis técnico, valuación profesional y control estratégico de activos.
 </p>
 
 </div>
 
 <div class="services">
 
-<div class="service-card">
-<div class="service-icon">🎯</div>
-<h3>Precisión</h3>
+<div class="service">
+<h3>📊 Valuación</h3>
 <p>
-Análisis, auditoría y optimización de activos con metodologías confiables y enfoque técnico especializado.
+Estimación profesional de activos, análisis financiero y respaldo técnico para toma de decisiones empresariales.
 </p>
 </div>
 
-<div class="service-card">
-<div class="service-icon">📈</div>
-<h3>Valuación</h3>
+<div class="service">
+<h3>🏢 Inventarios</h3>
 <p>
-Estimación profesional del valor de mercado y análisis financiero para respaldo estratégico.
+Control patrimonial, levantamiento físico y administración de activos empresariales.
 </p>
 </div>
 
-<div class="service-card">
-<div class="service-icon">♟️</div>
-<h3>Estrategia</h3>
+<div class="service">
+<h3>⚙️ Ingeniería</h3>
 <p>
-Información confiable para fortalecer decisiones empresariales y operativas.
-</p>
-</div>
-
-<div class="service-card">
-<div class="service-icon">🏢</div>
-<h3>Inventarios</h3>
-<p>
-Control y levantamiento de inventarios con metodologías estructuradas y trazabilidad.
-</p>
-</div>
-
-<div class="service-card">
-<div class="service-icon">⚙️</div>
-<h3>Ingeniería</h3>
-<p>
-Soluciones integrales orientadas a control, optimización y análisis especializado.
-</p>
-</div>
-
-<div class="service-card">
-<div class="service-icon">🔐</div>
-<h3>Control</h3>
-<p>
-Procesos orientados a precisión, seguridad operativa y mejora continua.
+Soluciones integrales de control, optimización y análisis especializado para instituciones y empresas.
 </p>
 </div>
 
@@ -655,73 +606,117 @@ Procesos orientados a precisión, seguridad operativa y mejora continua.
 
 </section>
 
-<section class="cta" id="contacto">
+<section class="section" id="calculadora">
+
+<div class="section-title">
+
+<span>CALCULADORA</span>
 
 <h2>
-El valor de sus activos en nuestras manos.
+Calculadora financiera y contable
 </h2>
 
-<p>
-Experiencia, metodología y análisis estratégico para empresas que requieren precisión, control y confianza.
+</div>
+
+<div class="calculator">
+
+<input type="number" id="subtotal" placeholder="Subtotal">
+
+<button onclick="calcularIVA()">
+Calcular IVA
+</button>
+
+<div class="result" id="resultado">
+Resultado aparecerá aquí
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="contacto">
+
+<div class="section-title">
+
+<span>CONTACTO</span>
+
+<h2>
+Hablemos sobre su proyecto
+</h2>
+
+</div>
+
+<div class="contact">
+
+<div class="form">
+
+<input type="text" placeholder="Nombre">
+<input type="email" placeholder="Correo">
+<textarea placeholder="Escriba su mensaje"></textarea>
+
+<button>
+Enviar Información
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Información corporativa</h3>
+
+<p style="line-height:2;">
+📍 Ciudad de México<br><br>
+📞 +52 55 0000 0000<br><br>
+✉️ contacto@icssa.com
 </p>
 
-<a href="https://icssacv.com" class="btn btn-primary">
-Visitar sitio actual
-</a>
+</div>
+
+</div>
 
 </section>
 
 <footer>
-
-<div class="footer-grid">
-
-<div>
-
-<h3>ICSSA</h3>
-
 <p>
-Ingeniería Costos y Servicios S.A. de C.V.
-</p>
-
-<p>
-Experiencia, precisión y confianza desde 1989.
-</p>
-
-</div>
-
-<div>
-
-<h3>Servicios</h3>
-
-<ul>
-<li>Valuación</li>
-<li>Inventarios</li>
-<li>Activos</li>
-<li>Tecnología</li>
-</ul>
-
-</div>
-
-<div>
-
-<h3>Contacto</h3>
-
-<ul>
-<li>www.icssacv.com</li>
-<li>Información corporativa</li>
-<li>Atención especializada</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
 © 2026 ICSSA · Ingeniería Costos y Servicios S.A. de C.V.
-</div>
-
+</p>
 </footer>
+
+<a class="whatsapp" href="https://wa.me/5215500000000" target="_blank">
+💬
+</a>
+
+<script>
+
+function toggleMode(){
+
+document.body.classList.toggle('light');
+
+}
+
+function calcularIVA(){
+
+let subtotal = parseFloat(document.getElementById('subtotal').value);
+
+if(isNaN(subtotal)){
+
+document.getElementById('resultado').innerHTML = 'Ingrese un valor válido';
+
+return;
+
+}
+
+let iva = subtotal * 0.16;
+let total = subtotal + iva;
+
+document.getElementById('resultado').innerHTML = `
+IVA: $${iva.toFixed(2)} <br>
+TOTAL: $${total.toFixed(2)}
+`;
+
+}
+
+</script>
 
 </body>
 </html>
-```
