@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ICSSA | Inteligencia Financiera y Control de Activos</title>
+<title>ICSSA | Asset Intelligence & Financial Control</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,26 +17,26 @@
 :root{
 
 --bg:#05070b;
---bg-soft:#0c1118;
+--bg-soft:#0d1117;
 --card:rgba(255,255,255,.03);
 --text:#ffffff;
---text-soft:#97a4b5;
+--text-soft:#8f9baa;
 --line:rgba(255,255,255,.08);
 --primary:#4ea3ff;
---glow:rgba(78,163,255,.25);
+--glow:rgba(78,163,255,.16);
 
 }
 
 body.light{
 
---bg:#f4f6f9;
+--bg:#f5f7fa;
 --bg-soft:#ffffff;
---card:rgba(255,255,255,.75);
+--card:rgba(255,255,255,.72);
 --text:#05070b;
---text-soft:#5e6b78;
+--text-soft:#5e6c7c;
 --line:rgba(0,0,0,.08);
 --primary:#005eff;
---glow:rgba(0,94,255,.15);
+--glow:rgba(0,94,255,.12);
 
 }
 
@@ -64,11 +64,11 @@ body::before{
 
 content:'';
 position:fixed;
-width:700px;
-height:700px;
-background:radial-gradient(circle,var(--glow),transparent 70%);
-top:-250px;
+top:-300px;
 right:-200px;
+width:800px;
+height:800px;
+background:radial-gradient(circle,var(--glow),transparent 70%);
 z-index:-1;
 
 }
@@ -79,11 +79,11 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:22px 7%;
+padding:24px 7%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-backdrop-filter:blur(14px);
+backdrop-filter:blur(16px);
 background:rgba(5,7,11,.72);
 border-bottom:1px solid var(--line);
 z-index:999;
@@ -104,15 +104,15 @@ gap:18px;
 
 .logo img{
 
-width:55px;
-height:55px;
+width:60px;
+height:60px;
 object-fit:contain;
 
 }
 
 .logo-text h1{
 
-font-size:24px;
+font-size:28px;
 font-weight:800;
 letter-spacing:-1px;
 
@@ -129,7 +129,7 @@ color:var(--text-soft);
 nav ul{
 
 display:flex;
-gap:36px;
+gap:34px;
 list-style:none;
 
 }
@@ -148,14 +148,6 @@ nav a:hover{
 color:var(--primary);
 }
 
-.right-nav{
-
-display:flex;
-align-items:center;
-gap:18px;
-
-}
-
 .toggle{
 
 width:54px;
@@ -166,17 +158,16 @@ background:var(--card);
 color:var(--text);
 cursor:pointer;
 font-size:18px;
-transition:.3s;
 
 }
 
 .market-bar{
 
-margin-top:98px;
-padding:14px 0;
-overflow:hidden;
+margin-top:108px;
+padding:16px 0;
 border-bottom:1px solid var(--line);
 background:var(--bg-soft);
+overflow:hidden;
 
 }
 
@@ -185,8 +176,8 @@ background:var(--bg-soft);
 display:flex;
 gap:55px;
 width:max-content;
+padding-left:50px;
 animation:scroll 28s linear infinite;
-padding-left:40px;
 
 }
 
@@ -204,7 +195,7 @@ color:#4dff91;
 }
 
 .down{
-color:#ff6767;
+color:#ff6f6f;
 }
 
 @keyframes scroll{
@@ -221,11 +212,11 @@ transform:translateX(-50%);
 
 .hero{
 
-min-height:88vh;
+min-height:92vh;
 display:flex;
-align-items:center;
 justify-content:space-between;
-padding:80px 7%;
+align-items:center;
+padding:90px 7%;
 gap:80px;
 
 }
@@ -241,16 +232,16 @@ max-width:760px;
 font-size:12px;
 letter-spacing:3px;
 color:var(--primary);
-margin-bottom:24px;
+margin-bottom:26px;
 
 }
 
 .hero h1{
 
-font-size:92px;
-line-height:.95;
+font-size:96px;
+line-height:.92;
 letter-spacing:-4px;
-margin-bottom:30px;
+margin-bottom:34px;
 font-weight:800;
 
 }
@@ -262,9 +253,9 @@ color:var(--primary);
 .hero p{
 
 font-size:20px;
-line-height:1.8;
+line-height:1.9;
+max-width:640px;
 color:var(--text-soft);
-max-width:620px;
 margin-bottom:42px;
 
 }
@@ -279,7 +270,7 @@ flex-wrap:wrap;
 
 .btn{
 
-padding:18px 28px;
+padding:18px 30px;
 border-radius:14px;
 text-decoration:none;
 font-weight:700;
@@ -309,58 +300,63 @@ color:var(--text);
 
 }
 
-.dashboard{
+.tools{
 
-width:380px;
-padding:32px;
-border-radius:28px;
+width:400px;
+padding:34px;
+border-radius:30px;
 background:var(--card);
 border:1px solid var(--line);
-backdrop-filter:blur(16px);
+backdrop-filter:blur(20px);
 
 }
 
-.dashboard-title{
+.tools-header{
 
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:26px;
+margin-bottom:28px;
 
 }
 
-.dashboard-title h3{
+.tools-header h3{
 
-font-size:22px;
+font-size:24px;
 
 }
 
 .live{
 
 font-size:11px;
-padding:6px 10px;
+padding:6px 12px;
 border-radius:20px;
 background:rgba(0,255,140,.12);
 color:#4dff91;
 
 }
 
-.calc-box{
+.tool-tabs{
 
-margin-bottom:18px;
+display:flex;
+gap:12px;
+margin-bottom:24px;
+flex-wrap:wrap;
 
 }
 
-.calc-box label{
+.tool-tab{
 
-display:block;
-margin-bottom:8px;
+padding:10px 16px;
+border-radius:12px;
+background:rgba(255,255,255,.04);
+border:1px solid var(--line);
 font-size:13px;
-color:var(--text-soft);
 
 }
 
-.calc-box input{
+.tools input,
+.tools select{
 
 width:100%;
 padding:16px;
@@ -368,11 +364,12 @@ border-radius:14px;
 border:1px solid var(--line);
 background:transparent;
 color:var(--text);
-font-size:16px;
+margin-bottom:16px;
+font-size:15px;
 
 }
 
-.dashboard button{
+.tools button{
 
 width:100%;
 padding:16px;
@@ -382,18 +379,18 @@ background:var(--primary);
 color:white;
 font-weight:700;
 cursor:pointer;
-margin-top:10px;
+margin-top:6px;
 
 }
 
 .result{
 
 margin-top:24px;
-padding:18px;
+padding:20px;
 border-radius:18px;
 background:rgba(255,255,255,.03);
-font-size:18px;
 line-height:1.8;
+font-size:18px;
 
 }
 
@@ -408,23 +405,23 @@ padding:120px 7%;
 display:flex;
 justify-content:space-between;
 align-items:end;
+gap:40px;
 margin-bottom:70px;
-gap:30px;
 
 }
 
 .section-head h2{
 
-font-size:58px;
-letter-spacing:-2px;
-max-width:650px;
+font-size:62px;
+letter-spacing:-3px;
+max-width:700px;
 
 }
 
 .section-head p{
 
-max-width:480px;
-line-height:1.8;
+max-width:500px;
+line-height:1.9;
 color:var(--text-soft);
 
 }
@@ -439,8 +436,8 @@ gap:26px;
 
 .capability{
 
-padding:38px;
-border-radius:26px;
+padding:42px;
+border-radius:28px;
 background:var(--card);
 border:1px solid var(--line);
 transition:.35s;
@@ -456,14 +453,35 @@ border-color:var(--primary);
 
 .capability h3{
 
-font-size:26px;
-margin-bottom:18px;
+font-size:28px;
+margin-bottom:20px;
 
 }
 
 .capability p{
 
 line-height:1.9;
+color:var(--text-soft);
+
+}
+
+.references{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+margin-top:50px;
+
+}
+
+.ref{
+
+padding:24px;
+border-radius:20px;
+background:var(--card);
+border:1px solid var(--line);
+font-size:14px;
+line-height:1.8;
 color:var(--text-soft);
 
 }
@@ -478,7 +496,7 @@ gap:30px;
 
 .contact-box{
 
-padding:40px;
+padding:42px;
 border-radius:28px;
 background:var(--card);
 border:1px solid var(--line);
@@ -520,10 +538,10 @@ cursor:pointer;
 
 footer{
 
-padding:40px 7%;
+padding:45px 7%;
 border-top:1px solid var(--line);
-color:var(--text-soft);
 font-size:14px;
+color:var(--text-soft);
 
 }
 
@@ -555,7 +573,7 @@ align-items:flex-start;
 
 }
 
-.dashboard{
+.tools{
 
 width:100%;
 
@@ -564,6 +582,12 @@ width:100%;
 .capabilities{
 
 grid-template-columns:1fr;
+
+}
+
+.references{
+
+grid-template-columns:1fr 1fr;
 
 }
 
@@ -620,6 +644,12 @@ font-size:40px;
 
 }
 
+.references{
+
+grid-template-columns:1fr;
+
+}
+
 }
 
 </style>
@@ -635,25 +665,27 @@ font-size:40px;
 <img src="logo.png" alt="ICSSA Logo">
 
 <div class="logo-text">
+
 <h1>ICSSA</h1>
-<p>INGENIERÍA COSTOS Y SERVICIOS</p>
+
+<p>INTELIGENCIA FINANCIERA Y CONTROL DE ACTIVOS</p>
+
 </div>
 
 </div>
 
 <ul>
+
 <li><a href="#inicio">Inicio</a></li>
 <li><a href="#capacidades">Capacidades</a></li>
+<li><a href="#referencias">Referencias</a></li>
 <li><a href="#contacto">Contacto</a></li>
-</ul>
 
-<div class="right-nav">
+</ul>
 
 <button class="toggle" onclick="toggleMode()">
 ☀️
 </button>
-
-</div>
 
 </nav>
 
@@ -679,8 +711,6 @@ font-size:40px;
 
 <div class="market-item">EUR/MXN 20.05 <span class="up">▲ 0.4%</span></div>
 
-<div class="market-item">ORO $2,340 <span class="up">▲ 1.2%</span></div>
-
 </div>
 
 </div>
@@ -690,40 +720,48 @@ font-size:40px;
 <div class="hero-left">
 
 <div class="mini">
-DESDE 1997 · VALUACIÓN · CONTROL · CONSULTORÍA
+
+DESDE 1997 · VALUACIÓN · ASSET MANAGEMENT · CONSULTORÍA
+
 </div>
 
 <h1>
 
-Inteligencia financiera y control estratégico de <span>activos</span>
+Asset Intelligence & Strategic <span>Control</span>
 
 </h1>
 
 <p>
 
-Más de 28 años ayudando a empresas e instituciones a proteger, analizar y optimizar el valor de sus activos mediante soluciones de valuación, control y análisis financiero.
+ICSSA integra valuación estratégica, control patrimonial y análisis financiero para empresas e instituciones que requieren precisión, trazabilidad y respaldo técnico.
+
+Inspirado en enfoques modernos de valuation, asset management y financial intelligence.
 
 </p>
 
 <div class="buttons">
 
 <a href="#capacidades" class="btn btn-primary">
+
 Explorar Capacidades
+
 </a>
 
 <a href="#contacto" class="btn btn-secondary">
+
 Solicitar Información
+
 </a>
 
 </div>
 
 </div>
 
-<div class="dashboard">
+<div class="tools">
 
-<div class="dashboard-title">
+<div class="tools-header">
 
-<h3>Calculadora Fiscal</h3>
+<h3>Financial Tools</h3>
 
 <div class="live">
 EN VIVO
@@ -731,23 +769,49 @@ EN VIVO
 
 </div>
 
-<div class="calc-box">
+<div class="tool-tabs">
 
-<label>Subtotal</label>
+<div class="tool-tab">
+IVA
+</div>
 
-<input type="number" id="subtotal" placeholder="$ 0.00">
+<div class="tool-tab">
+USD/MXN
+</div>
+
+<div class="tool-tab">
+Depreciación
+</div>
 
 </div>
 
-<button onclick="calcularIVA()">
+<input type="number" id="subtotal" placeholder="Subtotal MXN">
 
-Calcular IVA
+<select id="currency">
+
+<option value="18.42">
+USD → MXN
+</option>
+
+<option value="20.05">
+EUR → MXN
+</option>
+
+<option value="23.61">
+GBP → MXN
+</option>
+
+</select>
+
+<button onclick="calcular()">
+
+Calcular
 
 </button>
 
 <div class="result" id="resultado">
 
-IVA y total aparecerán aquí.
+IVA, total y tipo de cambio aparecerán aquí.
 
 </div>
 
@@ -761,13 +825,13 @@ IVA y total aparecerán aquí.
 
 <h2>
 
-Capacidades financieras y control patrimonial empresarial
+Capacidades financieras y control estratégico empresarial
 
 </h2>
 
 <p>
 
-ICSSA integra valuación, control de activos y análisis financiero para empresas e instituciones que requieren precisión, trazabilidad y respaldo técnico.
+ICSSA combina metodologías de valuación, administración de activos y análisis financiero para fortalecer la toma de decisiones empresariales.
 
 </p>
 
@@ -777,11 +841,11 @@ ICSSA integra valuación, control de activos y análisis financiero para empresa
 
 <div class="capability">
 
-<h3>Valuación</h3>
+<h3>Strategic Valuation</h3>
 
 <p>
 
-Determinación del valor real de activos mediante metodologías objetivas, sustentables y alineadas a normativas nacionales e internacionales.
+Determinación del valor financiero y operativo de activos mediante metodologías alineadas con estándares nacionales e internacionales.
 
 </p>
 
@@ -789,11 +853,11 @@ Determinación del valor real de activos mediante metodologías objetivas, suste
 
 <div class="capability">
 
-<h3>Control de Activos</h3>
+<h3>Asset Management</h3>
 
 <p>
 
-Inventarios físicos, plaqueo, trazabilidad y control patrimonial estratégico para empresas e instituciones.
+Control patrimonial, trazabilidad y administración estratégica de activos físicos y financieros.
 
 </p>
 
@@ -801,13 +865,69 @@ Inventarios físicos, plaqueo, trazabilidad y control patrimonial estratégico p
 
 <div class="capability">
 
-<h3>Consultoría Financiera</h3>
+<h3>Financial Intelligence</h3>
 
 <p>
 
-Análisis financiero, administración de riesgos y soporte técnico para optimizar la toma de decisiones empresariales.
+Análisis financiero y optimización patrimonial orientados a maximizar visibilidad y control empresarial.
 
 </p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="referencias">
+
+<div class="section-head">
+
+<h2>
+
+Referencias estratégicas y visión de mercado
+
+</h2>
+
+<p>
+
+El nuevo enfoque visual y conceptual de ICSSA toma inspiración de firmas internacionales de valuation, asset management y consulting financiero.
+
+</p>
+
+</div>
+
+<div class="references">
+
+<div class="ref">
+
+<strong>Deloitte</strong><br><br>
+
+Lenguaje ejecutivo premium enfocado en valuation, modeling y strategic decision making.
+
+</div>
+
+<div class="ref">
+
+<strong>Levin Assets</strong><br><br>
+
+Enfoque moderno de asset management y control patrimonial institucional.
+
+</div>
+
+<div class="ref">
+
+<strong>Hilco Global</strong><br><br>
+
+Visión corporativa basada en monetización, maximización de valor y administración de activos.
+
+</div>
+
+<div class="ref">
+
+<strong>Bloomberg / BlackRock</strong><br><br>
+
+Inspiración visual premium basada en dashboards financieros, minimalismo y presencia institucional.
 
 </div>
 
@@ -827,7 +947,7 @@ Conectemos
 
 <p>
 
-Nuestro equipo puede ayudarle con soluciones de valuación, control patrimonial y análisis financiero especializado.
+Nuestro equipo puede ayudarle con soluciones de valuación, asset management y análisis financiero especializado.
 
 </p>
 
@@ -844,15 +964,19 @@ Nuestro equipo puede ayudarle con soluciones de valuación, control patrimonial 
 <textarea placeholder="Escriba su mensaje"></textarea>
 
 <button>
+
 Enviar Información
+
 </button>
 
 </div>
 
 <div class="contact-box">
 
-<h3 style="font-size:30px; margin-bottom:25px;">
+<h3 style="font-size:32px; margin-bottom:25px;">
+
 ICSSA
+
 </h3>
 
 <p style="line-height:2; color:var(--text-soft);">
@@ -875,7 +999,7 @@ contacto@icssa.com<br><br>
 
 <footer>
 
-© 2026 ICSSA · Inteligencia Financiera y Control Estratégico de Activos
+© 2026 ICSSA · Asset Intelligence & Financial Control
 
 </footer>
 
@@ -893,9 +1017,11 @@ document.body.classList.toggle('light');
 
 }
 
-function calcularIVA(){
+function calcular(){
 
 let subtotal = parseFloat(document.getElementById('subtotal').value);
+
+let currency = parseFloat(document.getElementById('currency').value);
 
 if(isNaN(subtotal)){
 
@@ -905,12 +1031,16 @@ return;
 }
 
 let iva = subtotal * 0.16;
+
 let total = subtotal + iva;
+
+let conversion = total / currency;
 
 document.getElementById('resultado').innerHTML = `
 
-IVA: $${iva.toFixed(2)} <br>
-TOTAL: $${total.toFixed(2)}
+IVA: $${iva.toFixed(2)} MXN <br>
+TOTAL: $${total.toFixed(2)} MXN <br>
+CONVERSIÓN: ${conversion.toFixed(2)}
 
 `;
 
