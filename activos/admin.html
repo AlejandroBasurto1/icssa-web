@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173a78"><title>ICSSA | Administración de base</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f5f9;color:#17263a;font:15px Arial,sans-serif}main{max-width:720px;margin:32px auto;padding:18px}.card{background:white;border:1px solid #dce4ed;border-radius:16px;padding:22px;margin:14px 0;box-shadow:0 3px 14px #17324d0b}h1{font-size:22px;color:#263f80}label{display:block;font-weight:bold;margin:12px 0 6px}input,button{font:inherit;width:100%;padding:12px;border-radius:9px;border:1px solid #cbd5df}button{border:0;background:#263f80;color:white;font-weight:bold;margin-top:12px;cursor:pointer}button:disabled{opacity:.55}small,.muted{color:#647487}#status{white-space:pre-wrap;background:#f1f4f8;border-radius:9px;padding:12px;margin-top:14px}.hidden{display:none}.row{display:flex;gap:10px;align-items:center}.row button{width:auto}
+</style></head><body><main>
+<h1>ICSSA · Administración de base maestra</h1>
+<p class="muted">Acceso exclusivo del administrador. Desde aquí se publica la base patrimonial para todos los trabajadores.</p>
+<section class="card" id="loginCard"><h2>Acceso administrador</h2>
+<label>Usuario</label><input id="username" autocomplete="username" placeholder="Tu usuario">
+<label>Contraseña</label><input id="password" type="password" autocomplete="current-password" placeholder="Contraseña">
+<button id="login">Entrar</button></section>
+<section class="card hidden" id="uploadCard"><div class="row"><strong id="who"></strong><button id="logout">Cerrar sesión</button></div>
+<h2>Cargar base Excel remota</h2><p class="muted">Se importará la primera hoja. Los registros se guardan en Supabase y estarán disponibles para los usuarios autorizados.</p>
+<label>Archivo Excel</label><input id="excel" type="file" accept=".xlsx,.xls,.csv">
+<button id="upload">Publicar base en Supabase</button><div id="status">Selecciona el archivo Excel.</div>
+</section></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="./supabase-config.js"></script>
+<script>
+(()=>{const $=id=>document.getElementById(id);let sb=null,user=null;
+const status=t=>$("status").textContent=t;
+function cfg(){const c=window.ICSSA_SUPABASE||{};if(!c.url||c.url.includes("TU-PROJECT")||!c.publishableKey||c.publishableKey.includes("TU-PUBLISHABLE"))throw Error("Falta configurar Project URL y Publishable key en supabase-config.js");sb=window.supabase.createClient(c.url,c.publishableKey)}
+function mail(u){return u.trim().toLowerCase()+"@usuarios.icssa.local"}
+$("login").onclick=async()=>{try{cfg();$("login").disabled=true;const {data,error}=await sb.auth.signInWithPassword({email:mail($("username").value),password:$("password").value});if(error)throw error;user=data.user;const {data:p,error:pe}=await sb.from("profiles").select("full_name,role,active").eq("id",user.id).single();if(pe)throw pe;if(p.role!=="admin"||!p.active){await sb.auth.signOut();throw Error("Esta cuenta no tiene permisos de administrador")} $("loginCard").classList.add("hidden");$("uploadCard").classList.remove("hidden");$("who").textContent="Administrador: "+(p.full_name||$("username").value);status("Sesión segura iniciada. Puedes publicar la base.");}catch(e){alert(e.message)}finally{$("login").disabled=false}};
+$("logout").onclick=async()=>{await sb?.auth.signOut();location.reload()};
+$("upload").onclick=async()=>{const f=$("excel").files[0];if(!f)return alert("Selecciona el Excel.");$("upload").disabled=true;try{
+const bytes=await f.arrayBuffer(),book=XLSX.read(bytes,{type:"array",cellDates:true}),sheet=book.Sheets[book.SheetNames[0]],rows=XLSX.utils.sheet_to_json(sheet,{defval:"",raw:false,dateNF:"dd/mm/yyyy"});
+if(!rows.length)throw Error("El archivo no contiene registros.");
+const key=Object.keys(rows[0]).find(k=>k.trim().toLowerCase()==="activo");if(!key)throw Error("No encontré la columna Activo.");
+const clean=rows.filter(r=>String(r[key]||"").trim()).map(r=>({id:String(r[key]).trim(),source_data:r,is_new:false,updated_at:new Date().toISOString()}));
+if(!clean.length)throw Error("No hay números de activo válidos.");
+let n=0;for(let i=0;i<clean.length;i+=100){const batch=clean.slice(i,i+100);const {error}=await sb.from("assets").upsert(batch,{onConflict:"id"});if(error)throw error;n+=batch.length;status("Publicando "+n+" de "+clean.length+" activos…")}
+const {error:logError}=await sb.from("base_imports").insert({file_name:f.name,row_count:n,imported_by:user.id});if(logError)throw logError;
+status("Base publicada correctamente: "+n+" activos. Ya está en Supabase.");alert("Base remota publicada: "+n+" activos.");
+}catch(e){status("No se completó la carga: "+e.message);alert(e.message)}finally{$("upload").disabled=false}};
+})();
+</script></body></html>
