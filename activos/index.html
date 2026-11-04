@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17324d"><meta name="description" content="Consulta y localización de activos">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.svg">
+<title>Consulta de activos</title><link rel="stylesheet" href="styles.css">
+</head><body>
+<header><div class="brand">ACTIVOS</div><div class="sub">Consulta y localización</div></header>
+<main><section class="panel">
+<div class="topline"><h1>Buscar activo</h1><span id="count" class="pill">Sin base</span></div>
+<input id="search" type="search" placeholder="Número, nombre, planta o área…" autocomplete="off">
+<div class="actions"><button id="importBtn" class="primary">＋ Cargar Excel</button><button id="exportBtn" class="secondary">Exportar seguimiento</button><input id="file" type="file" accept=".xlsx,.xls,.csv" hidden></div>
+<p class="hint">Puedes reemplazar la base cuando recibas un Excel nuevo. El seguimiento se conserva cuando coinciden los números de activo.</p>
+</section><section id="results" class="results"><div class="empty">Carga tu archivo Excel para comenzar.</div></section></main>
+<dialog id="detail"><form method="dialog"><button class="close" aria-label="Cerrar">×</button></form><div id="detailBody"></div></dialog>
+<footer>Los datos se guardan en este dispositivo.</footer>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="app.js"></script>
+</body></html>
