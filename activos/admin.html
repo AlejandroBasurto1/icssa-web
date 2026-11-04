@@ -11,7 +11,12 @@
 <label>Contraseña</label><input id="password" type="password" autocomplete="current-password" placeholder="Contraseña">
 <button id="login">Entrar</button></section>
 <section class="card hidden" id="uploadCard"><div class="row"><strong id="who"></strong><button id="logout">Cerrar sesión</button></div>
-<h2>Cargar base Excel remota</h2><p class="muted">Se importará la primera hoja. Los registros se guardan en Supabase y estarán disponibles para los usuarios autorizados.</p>
+<h2>Crear acceso de trabajador</h2>
+<label>Nombre completo</label><input id="newFullName" placeholder="Nombre del trabajador">
+<label>Usuario (por ejemplo: juan.perez)</label><input id="newUsername" placeholder="usuario">
+<label>Permiso</label><select id="newRole"><option value="editor">Captura y consulta</option><option value="viewer">Solo consulta</option></select>
+<button id="createUser">Crear usuario</button><div id="userStatus" class="muted"></div>
+<hr style="border:0;border-top:1px solid #e2e8ef;margin:20px 0"><h2>Cargar base Excel remota</h2><p class="muted">Se importará la primera hoja. Los registros se guardan en Supabase y estarán disponibles para los usuarios autorizados.</p>
 <label>Archivo Excel</label><input id="excel" type="file" accept=".xlsx,.xls,.csv">
 <button id="upload">Publicar base en Supabase</button><div id="status">Selecciona el archivo Excel.</div>
 </section></main>
@@ -24,7 +29,8 @@ const status=t=>$("status").textContent=t;
 function cfg(){const c=window.ICSSA_SUPABASE||{};if(!c.url||c.url.includes("TU-PROJECT")||!c.publishableKey||c.publishableKey.includes("TU-PUBLISHABLE"))throw Error("Falta configurar Project URL y Publishable key en supabase-config.js");sb=window.supabase.createClient(c.url,c.publishableKey)}
 function mail(u){return u.trim().toLowerCase()+"@usuarios.icssa.local"}
 $("login").onclick=async()=>{try{cfg();$("login").disabled=true;const {data,error}=await sb.auth.signInWithPassword({email:mail($("username").value),password:$("password").value});if(error)throw error;user=data.user;const {data:p,error:pe}=await sb.from("profiles").select("full_name,role,active").eq("id",user.id).single();if(pe)throw pe;if(p.role!=="admin"||!p.active){await sb.auth.signOut();throw Error("Esta cuenta no tiene permisos de administrador")} $("loginCard").classList.add("hidden");$("uploadCard").classList.remove("hidden");$("who").textContent="Administrador: "+(p.full_name||$("username").value);status("Sesión segura iniciada. Puedes publicar la base.");}catch(e){alert(e.message)}finally{$("login").disabled=false}};
-$("logout").onclick=async()=>{await sb?.auth.signOut();location.reload()};
+$("logout").onclick=async()=>{await sb?.auth.signOut();location.reload()};$("createUser").onclick=async()=>{const full_name=$("newFullName").value.trim(),username=$("newUsername").value.trim().toLowerCase(),role=$("newRole").value;if(!full_name||!username)return alert("Escribe el nombre y el usuario.");$("createUser").disabled=true;try{const {data,error}=await sb.functions.invoke("admin-create-user",{body:{full_name,username,role}});if(error)throw error;$("userStatus").textContent="Usuario creado: "+data.username+" · contraseña temporal: "+data.temporary_password+" · deberá cambiarla.";alert("Usuario creado. Entrega sus datos de acceso de forma privada.");$("newFullName").value="";$("newUsername").value="";}catch(e){$("userStatus").textContent="No se pudo crear: "+e.message;alert(e.message)}finally{$("createUser").disabled=false}};
+
 $("upload").onclick=async()=>{const f=$("excel").files[0];if(!f)return alert("Selecciona el Excel.");$("upload").disabled=true;try{
 const bytes=await f.arrayBuffer(),book=XLSX.read(bytes,{type:"array",cellDates:true}),sheet=book.Sheets[book.SheetNames[0]],rows=XLSX.utils.sheet_to_json(sheet,{defval:"",raw:false,dateNF:"dd/mm/yyyy"});
 if(!rows.length)throw Error("El archivo no contiene registros.");
