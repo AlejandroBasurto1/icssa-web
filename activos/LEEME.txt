@@ -1,0 +1,20 @@
+CONSULTA DE ACTIVOS - PWA
+
+Aplicación instalada para buscar activos, copiar su número, registrar si fue localizado, anotar el área encontrada y escribir observaciones.
+
+USO:
+1. Abre la aplicación en el celular.
+2. Pulsa Cargar Excel y selecciona la primera hoja de tu archivo.
+3. Busca por número, nombre, planta o área.
+4. En Abrir ficha marca Activo localizado, registra área/observaciones y guarda.
+5. Exportar seguimiento descarga un CSV.
+
+ENCABEZADOS RECONOCIDOS:
+Concatenado 1, Denominación del activo, Área de localización, Planta y Código de localización.
+
+IMPORTANTE:
+- El Excel NO se publica en GitHub; se importa desde tu dispositivo.
+- La información y seguimiento se guardan en el navegador del celular y no se sincronizan entre dispositivos.
+- Al importar un Excel actualizado, el seguimiento previo se conserva por número de activo.
+- Se requiere HTTPS para instalar como PWA.
+- El lector de Excel se descarga desde CDN al abrir/importar; se requiere internet para esa operación.
