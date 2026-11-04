@@ -148,3 +148,28 @@ grant select, insert, update, delete on public.assets to authenticated;
 grant select, insert, update, delete on public.asset_updates to authenticated;
 grant select on public.profiles, public.asset_audit to authenticated;
 grant usage, select on sequence public.asset_audit_id_seq to authenticated;
+
+
+-- ICSSA multiusuario: extensión de perfiles y control de carga de base.
+alter table public.profiles add column if not exists username text unique;
+alter table public.profiles add column if not exists must_change_password boolean not null default true;
+
+create table if not exists public.base_imports (
+  id bigint generated always as identity primary key,
+  file_name text not null,
+  row_count integer not null,
+  imported_by uuid references auth.users(id),
+  imported_at timestamptz not null default now()
+);
+alter table public.base_imports enable row level security;
+drop policy if exists "admins view base imports" on public.base_imports;
+create policy "admins view base imports" on public.base_imports for select to authenticated
+using (public.icssa_role() = 'admin');
+drop policy if exists "admins create base imports" on public.base_imports;
+create policy "admins create base imports" on public.base_imports for insert to authenticated
+with check (public.icssa_role() = 'admin');
+grant select, insert on public.base_imports to authenticated;
+grant usage, select on sequence public.base_imports_id_seq to authenticated;
+
+-- El alta de usuarios y el cambio de rol se hace desde una función de servidor,
+-- nunca exponiendo service_role en el navegador.
