@@ -1,0 +1,28 @@
+ICSSA — CONFIGURACIÓN MULTIUSUARIO SUPABASE
+
+Archivos:
+- supabase-schema.sql: crea tablas, seguridad RLS, perfiles, auditoría y Realtime.
+- supabase-config.js: contiene los dos valores públicos del proyecto.
+- La clave service_role NUNCA se coloca en la aplicación ni en GitHub.
+
+PASOS EN SUPABASE
+1. Abre tu proyecto Supabase.
+2. En SQL Editor crea una consulta, pega supabase-schema.sql y pulsa Run.
+3. En Project Settings > API copia Project URL y Publishable key (o anon public key).
+4. Coloca esos dos valores en supabase-config.js.
+5. En Authentication > Providers confirma Email habilitado.
+6. En Authentication > Users crea los usuarios de cada trabajador.
+7. El primer usuario administrador debe recibir role='admin' en public.profiles. Ejecuta:
+   update public.profiles set role='admin' where id = 'UUID_DEL_USUARIO';
+   Para capturistas usa role='editor'; para consulta role='viewer'.
+8. En Authentication configura recuperación de contraseña y políticas de contraseña.
+
+ROLES
+- admin: administra perfiles, consulta auditoría y captura.
+- editor: consulta y registra/actualiza activos.
+- viewer: solo consulta.
+Los usuarios nuevos nacen como viewer por seguridad.
+
+IMPORTANTE
+Este paquete prepara la estructura de base de datos y seguridad. La app actual todavía guarda avances en el dispositivo; no se debe anunciar como multiusuario hasta integrar el inicio de sesión, migración/importación de la base, lectura/escritura y suscripción Realtime en app.js y probarlo con dos cuentas. No subas datos patrimoniales reales a un repositorio público.
+La sincronización offline requiere cola local y resolución de conflictos antes de producción. La tabla asset_updates usa una fila por activo y registra auditoría de cambios.
