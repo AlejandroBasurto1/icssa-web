@@ -1,18 +1,26 @@
 <!doctype html>
 <html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#17324d"><meta name="description" content="Consulta y localización de activos">
-<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.svg">
-<title>Consulta de activos</title><link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#173a78"><meta name="description" content="Levantamiento y geolocalización de activos ICSSA">
+<link rel="manifest" href="manifest.webmanifest"><title>ICSSA | Levantamiento de activos</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css">
 </head><body>
-<header><div class="brand">ACTIVOS</div><div class="sub">Consulta y localización</div></header>
-<main><section class="panel">
-<div class="topline"><h1>Buscar activo</h1><span id="count" class="pill">Sin base</span></div>
-<div class="search-row"><input id="search" type="search" placeholder="Número, nombre, planta o área…" autocomplete="off"><button id="searchBtn" class="primary">Buscar</button></div>
-<div class="actions"><button id="importBtn" class="primary">＋ Cargar Excel</button><button id="exportBtn" class="secondary">Exportar seguimiento</button><input id="file" type="file" accept=".xlsx,.xls,.csv" hidden></div>
-<p class="hint">Puedes reemplazar la base cuando recibas un Excel nuevo. El seguimiento se conserva cuando coinciden los números de activo.</p>
-</section><section id="results" class="results"><div class="empty">Carga tu archivo Excel para comenzar.</div></section></main>
-<dialog id="detail"><form method="dialog"><button class="close" aria-label="Cerrar">×</button></form><div id="detailBody"></div></dialog>
-<footer>Los datos se guardan en este dispositivo.</footer>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="app.js"></script>
+<header><img class="logo" src="data:image/jpeg;base64,${logo_small}" alt="ICSSA"><div class="brand-sub">LEVANTAMIENTO Y LOCALIZACIÓN DE ACTIVOS</div></header>
+<main>
+<section class="panel">
+<div class="topline"><h1>Localizar activo</h1><span id="count" class="pill">Carga tu base</span></div>
+<div class="search-row"><input id="search" type="search" placeholder="Escribe o escanea el número de activo" autocomplete="off"><button id="searchBtn" class="primary">Buscar</button></div>
+<div class="actions"><button id="scanBtn" class="secondary">▣ Escanear código</button><button id="importBtn" class="secondary">＋ Cargar Excel</button><button id="exportBtn" class="primary">Descargar Excel final</button><input id="file" type="file" accept=".xlsx,.xls,.csv" hidden></div>
+<p class="hint">Busca el activo por número o utiliza la cámara para leer su código de barras.</p>
+</section>
+<section id="results" class="results"><div class="empty">Carga el Excel para comenzar el recorrido.</div></section>
+<section class="panel map-panel"><div class="topline"><h2>Mapa del recorrido</h2><span id="gpsCount" class="pill">0 ubicaciones</span></div><div id="map"></div><div class="progress-row"><div><strong id="doneCount">0</strong><span>Localizados</span></div><div><strong id="pendingCount">0</strong><span>Pendientes</span></div><div><strong id="totalCount">0</strong><span>Total activos</span></div></div><h3>Activos pendientes</h3><div id="pendingList" class="pending-list">Carga tu base para ver el avance.</div></section>
+</main>
+<dialog id="detail"><button class="close" id="closeDetail" aria-label="Cerrar">×</button><div id="detailBody"></div></dialog>
+<dialog id="scanner"><button class="close" id="closeScanner" aria-label="Cerrar">×</button><h2>Escanear código de barras</h2><video id="video" playsinline></video><p id="scanStatus" class="hint">Apunta la cámara al código del activo.</p><button id="stopScan" class="secondary">Cerrar cámara</button></dialog>
+<footer>Los datos se guardan en este dispositivo.<br><strong>Creación y desarrollo: Alejandro Basurto</strong></footer>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
 </body></html>
