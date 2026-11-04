@@ -15,9 +15,10 @@
 <p class="hint">Busca el activo por número o utiliza la cámara para leer su código de barras.</p>
 </section>
 <section id="results" class="results"><div class="empty">Carga el Excel para comenzar el recorrido.</div></section>
+<section id="editorPanel" class="panel editor-panel" hidden><div class="topline"><h2 id="editorHeading">Ficha del activo</h2><button id="closeEditor" class="secondary" type="button">Cerrar ficha</button></div><div id="editorBody"></div></section>
 <section class="panel map-panel"><div class="topline"><h2>Mapa del recorrido</h2><span id="gpsCount" class="pill">0 ubicaciones</span></div><div id="map"></div><div class="progress-row"><div><strong id="doneCount">0</strong><span>Localizados</span></div><div><strong id="pendingCount">0</strong><span>Pendientes</span></div><div><strong id="totalCount">0</strong><span>Total activos</span></div></div><h3>Activos pendientes</h3><div id="pendingList" class="pending-list">Carga tu base para ver el avance.</div></section>
 </main>
-<dialog id="detail"><button class="close" id="closeDetail" aria-label="Cerrar">×</button><div id="detailBody"></div></dialog>
+
 <dialog id="scanner"><button class="close" id="closeScanner" aria-label="Cerrar">×</button><h2>Escanear código de barras</h2><video id="video" playsinline></video><p id="scanStatus" class="hint">Apunta la cámara al código del activo.</p><button id="stopScan" class="secondary">Cerrar cámara</button></dialog>
 <footer>Los datos se guardan en este dispositivo.<br><strong>Creación y desarrollo: Alejandro Basurto</strong></footer>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
