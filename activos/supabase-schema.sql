@@ -173,3 +173,14 @@ grant usage, select on sequence public.base_imports_id_seq to authenticated;
 
 -- El alta de usuarios y el cambio de rol se hace desde una función de servidor,
 -- nunca exponiendo service_role en el navegador.
+
+
+-- Reglas de escritura: solo admin sustituye la base patrimonial.
+drop policy if exists "editors manage assets" on public.assets;
+drop policy if exists "admins manage master assets" on public.assets;
+create policy "admins manage master assets" on public.assets for all to authenticated
+using (public.icssa_role() = 'admin')
+with check (public.icssa_role() = 'admin');
+drop policy if exists "editors create new assets" on public.assets;
+create policy "editors create new assets" on public.assets for insert to authenticated
+with check (public.icssa_role() = 'editor' and is_new = true);
